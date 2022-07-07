@@ -24,6 +24,9 @@
 			// what happens on success.
 			success: function( response, status, request ) {
 
+				console.log( 'Success' );
+				console.log( response );
+
 				// set the image src to the response.
 				$( '.ssi-image' ).attr( 'src', response.url );
 
@@ -82,6 +85,9 @@
 
 			// what happens on success.
 			success: function( response, status, request ) {
+
+				console.log( 'Success' );
+				console.log( response );
 
 				// set the image src to the response.
 				$( '.ssi-image' ).attr( 'src', placeholderImag );
