@@ -1,0 +1,12 @@
+img.ssi-image {
+	width: 400px;
+	height: 210px;
+	display: block;
+}
+.wp-core-ui .generate-ssi-image-button,
+.wp-core-ui .delete-ssi-image-button {
+	margin-bottom: 1em;
+}
+.wp-core-ui .ssi-hidden {
+	display: none;
+}
