@@ -10,3 +10,48 @@ img.ssi-image {
 .wp-core-ui .ssi-hidden {
 	display: none;
 }
+.ssi-wpjm-input--image,
+.ssi-wpjm-input--gallery {
+	display: none;
+}
+.ssi-wpjm-image,
+.ssi-wpjm-gallery-image{
+	border: 4px solid #CCCCCC;
+	padding: 4px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.ssi-wpjm-image-wrapper {
+	position: relative;
+	width: 166px;
+}
+.ssi-wpjm-image--remove,
+.ssi-wpjm-gallery--remove {
+	position: absolute;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.ssi-wpjm-gallery-item {
+	display: inline-block;
+	margin: 0;
+    margin-right: 32px;
+}
+.ssi-wpjm-input-description {
+	font-style: italic;
+}
+.form-table .ssi-wpjm-gallery-button,
+.form-table .ssi-wpjm-image-button {
+	margin-bottom: 8px;
+}
+
+.setting-type--section {
+	border-top: 1px solid #CCCCCC;
+}
+.setting-type--section th {
+	font-size: 130%;
+	font-weight: bold;
+}
+.ssi-wpjm-settings-form .form-table th {
+	width: 300px;
+}

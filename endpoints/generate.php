@@ -1,44 +1,68 @@
 <?php
 // default job post.
-$job_post = 0;
+$post_id = 0;
 
 // if a job post is available to generate the html of.
-if ( ! empty( $_GET['job_id'] ) ) {
+if ( ! empty( $_GET['post_id'] ) ) {
 
 	// sanitize and set as the job post.
-	$job_post = absint( $_GET['job_id'] );
+	$post_id = absint( $_GET['post_id'] );
 
 }
 
 // set some args.
 $args = array(
-	'template'      => get_option( 'ssi_wpjm_template' ),
-	'job_post'      => $job_post,
-	'bg_color'      => get_option( 'ssi_wpjm_bg_color' ),
-	'bg_text_color' => get_option( 'ssi_wpjm_text_bg_color' ),
-	'text_color'    => get_option( 'ssi_wpjm_text_color' ),
-	'image'         => wp_get_attachment_image_url( ssi_wpjm_get_random_image_id(), 'full' ),
-	'logo'          => wp_get_attachment_image_url( get_option( 'ssi_wpjm_logo_id' ), 'full' ),
+	'template'           => ssi_wpjm_get_template(),
+	'post_id'           => $post_id,
+	'bg_color'           => ssi_wpjm_get_bg_color(),
+	'bg_text_color'      => ssi_wpjm_get_text_bg_color(),
+	'text_color'         => ssi_wpjm_get_text_color(),
+	'title_size'         => ssi_wpjm_get_title_font_size(),
+	'location_size'      => ssi_wpjm_get_location_font_size(),
+	'salary_size'        => ssi_wpjm_get_salary_font_size(),
+	'google_font_url'    => ssi_wpjm_get_google_font_url(),
+	'google_font_family' => ssi_wpjm_get_google_font_family(),
+	'logo_size'          => ssi_wpjm_get_logo_size(),
+	'image'              => wp_get_attachment_image_url( ssi_wpjm_get_random_image_id(), 'full' ),
+	'logo'               => wp_get_attachment_image_url( get_option( 'ssi_wpjm_logo_id' ), 'full' ),
 );
 
 // allow the args to be filtered.
 $args = apply_filters( 'ssi_wpjm_endpoint_generate_args', $args );
 
 // set the location of the template file, making it filterable.
-$template_location = apply_filters( 'ssi_wpjm_generate_template_location', SSI_WPJM_LOCATION . '/templates/', $args );
-$template_css_location = apply_filters( 'ssi_wpjm_generate_template_css_location', SSI_WPJM_LOCATION . '/assets/css/', $args );
+$template_location = apply_filters( 'ssi_wpjm_endpoint_generate_template_location', SSI_WPJM_LOCATION . '/templates/', $args );
 
 // start output buffering.
 ob_start();
 
-// load the template markup, passing our args.
-load_template( SSI_WPJM_LOCATION . '/assets/css/global.php', true, $args );
+?>
+<style>
+	:root{--hdsmi--text--color:white;--hdsmi--text--background-color:rgb(91, 212, 218);--hdsmi--background-color:rgb(23, 139, 145);--hdsmi--font-family:sans-serif;--hdsmi--font-size:6vw;--hdsmi--title--font-size:6vw;--hdsmi--title--font-weight:inherit;--hdsmi--title--text-transform:inherit;--hdsmi--location--font-size:4vw;--hdsmi--location--font-weight:inherit;--hdsmi--location--text-transform:inherit;--hdsmi--salary--font-size:3vw;--hdsmi--salary--font-weight:inherit;--hdsmi--salary--text-transform:inherit;--hdsmi--image--background-blend-mode:none;--hdsmi--logo--height:4vw;--hdsmi--logo--width:auto}body{margin:0;padding:0}.hdsmi-template{width:100vw;aspect-ratio:120/63;display:grid;place-items:center;background-color:var(--hdsmi--background-color)}.hdsmi-template__inner{position:relative;aspect-ratio:120/63;width:100%}.hdsmi-template__text{font-size:var(--hdsmi--font-size);font-family:var(--hdsmi--font-family);color:var(--hdsmi--text--color)}.hdsmi-template__title{color:var(--hdsmi--title--color,var(--hdsmi--text--color));font-size:var(--hdsmi--title--font-size, var(--hdsmi--font-size));font-weight:var(--hdsmi--title--font-weight);text-transform:var(--hdsmi--title--text-transform)}.hdsmi-template__location{color:var(--hdsmi--location--color,var(--hdsmi--text--color));font-size:var(--hdsmi--location--font-size, var(--hdsmi--font-size));font-weight:var(--hdsmi--location--font-weight);text-transform:var(--hdsmi--location--text-transform)}.hdsmi-template__salary{color:var(--hdsmi--salary--color,var(--hdsmi--text--color));font-size:var(--hdsmi--salary--font-size, var(--hdsmi--font-size));font-weight:var(--hdsmi--salary--font-weight);text-transform:var(--hdsmi--salary--text-transform)}.hdsmi-template__logo{height:var(--hdsmi--logo--height);width:var(--hdsmi--logo--width)}
+	.hdsmi-template{
+		--hdsmi--text--color: <?php echo esc_attr( $args['text_color'] ); ?>;
+		--hdsmi--text--background-color: <?php echo esc_attr( $args['bg_text_color'] ); ?>;
+		--hdsmi--background-color: <?php echo esc_attr( $args['bg_color'] ); ?>;
+		--hdsmi--title--font-size: <?php echo esc_attr( $args['title_size'] ); ?>vw;
+		--hdsmi--location--font-size: <?php echo esc_attr( $args['location_size'] ); ?>vw;
+		--hdsmi--salary--font-size: <?php echo esc_attr( $args['salary_size'] ); ?>vw;
+		--hdsmi--logo--height: <?php echo esc_attr( $args['logo_size'] ); ?>vw;
+		<?php if ( ! empty( $args['google_font_family'] ) ) { ?>--hdsmi--font-family: <?php echo $args['google_font_family']; ?>;<?php } ?>
+	}
+</style>
+<?php
 
-// if our template exists.
-if ( file_exists( $template_css_location . $args['template'] . '.php' ) ) {
+// if we have a google font url.
+if ( ! empty( $args['google_font_family'] ) ) {
 
-	// load the template markup, passing our args.
-	load_template( $template_css_location . $args['template'] . '.php', true, $args );
+	// output the link elements to load the font.
+	?>
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="<?php echo esc_url( $args['google_font_family'] ); ?>" rel="stylesheet">
+
+	<?php
 
 }
 
@@ -73,7 +97,7 @@ if ( $matches !== false ) {
 			$match_key = str_replace( 'meta:', '', $match_value );
 			
 			// get the value of this meta.
-			$match_value = get_post_meta( $args['job_post'], $match_key, true );
+			$match_value = get_post_meta( $args['post_id'], $match_key, true );
 
 			// filter the match post value.
 			$match_value = apply_filters( 'ssi_wpjm_template_' . $match_key, $match_value, $match_key );
@@ -92,7 +116,7 @@ if ( $matches !== false ) {
 			// get the value of this meta.
 			$match_value = wp_strip_all_tags(
 				get_the_term_list(
-					$args['job_post'],
+					$args['post_id'],
 					$match_key,
 					'',
 					', ',
@@ -115,10 +139,10 @@ if ( $matches !== false ) {
 			$match_key = str_replace( 'post:', '', $match_value );
 
 			// get the value of this meta.
-			$match_value = get_post_field( $match_key, $args['job_post'] );
+			$match_value = get_post_field( $match_key, $args['post_id'] );
 
 			// if we have no job post id.
-			if ( empty( $args['job_post'] ) ) {
+			if ( empty( $args['post_id'] ) ) {
 
 				// set the match value to the site title.
 				$match_value = get_bloginfo( 'title' );

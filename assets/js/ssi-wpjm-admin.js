@@ -1,121 +1,144 @@
-( function( $ ) {
+(function( $ ) {
 
-	// hide the deploy spinner.
-	$( '.ssi-wpjm-spinner' ).hide();
+	// Add Color Picker to all inputs that have .ssi-wpjm-input--color-picker
+	$( function() {
+		$( '.ssi-wpjm-input--color-picker' ).wpColorPicker();
+	});
 
-	// when the deploy button is clicked.
-	$( document ).on( 'click', '.generate-ssi-image-button', function(e) {
+	$('body').on('click', '.ssi-wpjm-image-button', function(e) {
+        e.preventDefault();
+		
+		// get the previous input.
+		var inputID = $( this ).prev();
+		var imgID = $( inputID ).prev().children('img')[0];
 
-		// prevent the button taking its normal action.
-		e.preventDefault();
+        ssi_wpjm_image_uploader = wp.media({
+            title: 'Image',
+            button: {
+                text: 'Use this image'
+            },
+            multiple: false
+        }).on('select', function() {
 
-		// show the deploy spinner.
-		$( '.ssi-wpjm-spinner' ).show();
+			var attachment = ssi_wpjm_image_uploader.state().get('selection').first().toJSON();
+			console.log( attachment );
+            $( inputID ).val(attachment.id);
+			$( imgID ).attr( 'src', attachment.sizes.thumbnail.url );
+        })
+        .open();
+    });
 
-		// get the deploy endpoint url.
-		var generateEndpointUrl = $( this ).data( 'endpoint-url' );
+	$('body').on('click', '.ssi-wpjm-image--remove', function(e) {
 
-		// do the ajax request for job search.
-		$.ajax({
-
-			type: 'get',
-			url: generateEndpointUrl,
-
-			// what happens on success.
-			success: function( response, status, request ) {
-
-				console.log( 'Success' );
-				console.log( response );
-
-				// set the image src to the response.
-				$( '.ssi-image' ).attr( 'src', response.url );
-
-				// change the media id in the delete button.
-				$( '.delete-ssi-image-button' ).data( 'media-id', response.id );
-
-				// remove the hidden class for the delete button.
-				$( '.delete-ssi-image-button' ).removeClass( 'ssi-hidden' );
-
-				// add the hidden class for the add button.
-				$( '.generate-ssi-image-button' ).addClass( 'ssi-hidden' );
-
-				// hide the deploy spinner.
-				$( '.ssi-wpjm-spinner' ).hide();
-
-			},
-
-			/* what happens on success */
-			error: function( response ) {
-
-				console.log( 'Error' );
-				console.log( response );
-
-			}
-
-		});
+		// get the previous input.
+		var img = $( this ).prev();
+		
+		$( img ).attr( 'src', $( this ).data( 'placeholder' ) );
+		$( '#' + $( this ).data( 'input-id' ) ).val('');
 
 	});
 
-	// when the deploy button is clicked.
-	$( document ).on( 'click', '.delete-ssi-image-button', function(e) {
+	$('body').on('click', '.ssi-wpjm-gallery-button', function(e) {
 
-		// prevent the button taking its normal action.
-		e.preventDefault();
+        e.preventDefault();
 
-		// show the deploy spinner.
-		$( '.ssi-wpjm-spinner' ).show();
+		// get the current values.
+		currentValue = $( this ).prev().val();
 
-		// get the deploy endpoint url.
-		var deleteEndpoint = $( this ).data( 'endpoint-url' );
+		// if current value is currently empty.
+		if ( currentValue === '' ) {
+			currentValues = [];
+		} else {
+			currentValues = currentValue.split( ',' );
+		}
 
-		// get the attachment to delete.
-		var deleteMediaId = $( this ).data( 'media-id' );
+		// get the current gallery images stored.
+		var galleryImageIds = $( this ).prev();
 
-		// get the placeholder image url.
-		var placeholderImag = $( this ).data( 'placeholder-img' );
+		// get the gallery wrapper element.
+		var galleryWrapper = galleryImageIds.prev();
 
-		// do the ajax request for job search.
-		$.ajax({
+		ssi_wpjm_gallery_uploader = wp.media({
+            title: 'Image',
+            button: {
+                text: 'Use this image'
+            },
+            multiple: true
+        }).on('select', function() {
+			
+			var attachments = ssi_wpjm_gallery_uploader.state().get('selection').toJSON();
 
-			url: deleteEndpoint + deleteMediaId + '/?force=true',
-			method: 'DELETE',
-			beforeSend: function ( xhr ) {
-				xhr.setRequestHeader( 'X-WP-Nonce', wpApiSettings.nonce );
-			},
+			// loop through each of the attachments selected.
+			$.each( attachments , function( index, val ) {
+				console.log( currentValues );
+				// if this attachment id is not already in the current values array.
+				if ( currentValues.indexOf( val.id + '' ) !== 0 ) {
 
-			// what happens on success.
-			success: function( response, status, request ) {
+					// add attachment ID to the array.
+					currentValues.push( val.id );
 
-				console.log( 'Success' );
-				console.log( response );
+					// output a new figure and image element on the page.
 
-				// set the image src to the response.
-				$( '.ssi-image' ).attr( 'src', placeholderImag );
+					// create a new figure element.
+					imageFigure = $( '<figure class="ssi-wpjm-gallery-item"></figure>' );
+					
+					// create the removal span.
+					removeSpan = $( '<span class="dashicons dashicons-no ssi-wpjm-gallery--remove"></span>' );
+					removeSpan.attr( 'data-image-id', val.id );
+					
+					// add the span for removing.
+					$( imageFigure ).prepend( removeSpan );
+					
+					imageEl = $( '<img class="ssi-wpjm-gallery-image">' )
+					imageEl.attr( 'src', val.sizes.thumbnail.url );
 
-				// set the media id data.
-				$( '.ssi-image' ).data( 'media-id', deleteMediaId );
+					// add a new image to the figure.
+					$( imageFigure ).prepend( imageEl );
 
-				// remove the hidden class for the delete button.
-				$( '.delete-ssi-image-button' ).addClass( 'ssi-hidden' );
+					// append to the gallery wrapper.
+					$( galleryWrapper ).prepend( imageFigure );
 
-				// remove the hidden class for the generate button.
-				$( '.generate-ssi-image-button' ).removeClass( 'ssi-hidden' );
 
-				// hide the deploy spinner.
-				$( '.ssi-wpjm-spinner' ).hide();
+				}
 
-			},
+			});
 
-			/* what happens on success */
-			error: function( response ) {
+			// convert the current values array to a new values string.
+			newValues = currentValues.toString();
 
-				console.log( 'Error' );
-				console.log( response );
-
-			}
-
-		});
+			// set the input to the new current values.
+			$( galleryImageIds ).val( newValues );
+			
+        })
+        .open();
 
 	});
 
-} )( jQuery );
+	$('body').on('click', '.ssi-wpjm-gallery--remove', function(e) {
+		
+		// get the previous input.
+		var img = $( this ).prev();
+		var figure = $( img ).parent();
+
+		// remove this image.
+		figure.remove();
+
+		// get the current value of the background images input.
+		// NEED TO FIND THIS DYNAMICALLY BASED ON WHERE WE ARE ON CLICK!
+		var currentImages = $( '#ssi_wpjm_background_images-input').val();
+		var currentImagesArray = currentImages.split( ',' );
+
+		var imageID = $( this ).data( 'image-id' );
+
+		// find the key of this image id in the current images array.
+		var key = currentImagesArray.indexOf( imageID + '' );
+		
+		// remove the imageID from the current images array.
+		currentImagesArray.splice( key, 1 );
+
+		// NEED TO FIND THIS DYNAMICALLY BASED ON WHERE WE ARE ON CLICK!
+		$( '.ssi-wpjm-input--gallery' ).val( currentImagesArray );		
+
+	});
+
+})( jQuery );

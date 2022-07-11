@@ -45,10 +45,10 @@ function ssi_wpjm_jobs_meta_box_output( $post ) {
 	}
 
 	?>
-	<p><?php esc_html_e( 'Use the button below to generate the social sharing image for this job.', 'simpe-social-images-wpjm' ); ?></p>
+	<p><?php _e( 'Use the button below to generate the social sharing image for this job. You can <a target="_blank" href="' . esc_url( home_url( '/ssi-wpjm/v1/generate-html/?post_id=' . $post->ID ) ) . '">preview it</a> first if you like.', 'simpe-social-images-wpjm' ); ?></p>
 	
 	<button class="generate-ssi-image-button button-secondary" id="generate-ssi-image" data-endpoint-url="<?php echo esc_url( get_rest_url( null, 'ssi-wpjm/v1/getimage' ) ); ?>/?post_id=<?php echo esc_attr( $post->ID ); ?>">
-		<?php esc_html_e( 'Generate / Regenerate Social Sharing Image', 'simple-social-sharing-wpjm' ); ?>
+		<?php esc_html_e( 'Generate Social Sharing Image', 'simple-social-sharing-wpjm' ); ?>
 	</button>
 
 	<?php
