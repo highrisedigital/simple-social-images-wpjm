@@ -173,7 +173,7 @@ if ( $matches !== false ) {
 
 		}
 
-		// if we have a template.
+		// if we have no template.
 		if ( empty( $args['template'] ) ) {
 
 			// default the template.
