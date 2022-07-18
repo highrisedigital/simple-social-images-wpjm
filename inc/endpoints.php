@@ -56,15 +56,15 @@ function ssi_wpjm_load_jobfeed_endpoint_template( $template ) {
 	}
 
 	// check for a app push template file in the theme folder.
-	if ( file_exists( STYLESHEETPATH . '/ssi-wpjm/generate.php' ) ) {
+	if ( file_exists( STYLESHEETPATH . '/ssi-wpjm/generate-html.php' ) ) {
 
 		// load the file from the theme folder.
-		return STYLESHEETPATH . '/ssi-wpjm/generate.php';
+		return STYLESHEETPATH . '/ssi-wpjm/generate-html.php';
 
 	} else { // file not in theme folder.
 
 		// load the timetables file from the plugin.
-		return SSI_WPJM_LOCATION . '/endpoints/generate.php';
+		return SSI_WPJM_LOCATION . '/endpoints/generate-html.php';
 
 	}
 
@@ -127,7 +127,7 @@ function ssi_wpjm_generate_endpoint_output( \WP_REST_Request $request ) {
 	$social_image_html_url = home_url( '/ssi-wpjm/v1/generate-html/' );
 	$social_image_html_url = add_query_arg(
 		array(
-			'job_id'    => absint( $request['post_id'] ),
+			'post_id'   => absint( $request['post_id'] ),
 			'timestamp' => time(),
 		),
 		$social_image_html_url
@@ -165,7 +165,8 @@ function ssi_wpjm_generate_endpoint_output( \WP_REST_Request $request ) {
 		// output error.
 		return array(
 			'success' => false,
-			'error' => __( 'Request returned an error.', 'simple-social-image-wpjm' ),
+			//'error' => __( 'Request returned an error.', 'simple-social-image-wpjm' ),
+			'error'   => $response->get_error_message()
 		);
 
 	}
