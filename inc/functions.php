@@ -341,7 +341,7 @@ add_action( 'ssi_wpjm_after_settings_form_output', 'ssi_wpjm_add_preview_markup_
 function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 
 	// if no post id then use the global post ID.
-	if ( $post_id = 0 ) {
+	if ( $post_id === 0 ) {
 		global $post;
 		$post_id = $post->ID;
 	}
@@ -363,7 +363,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 	$social_image_html_url = home_url( '/ssi-wpjm/v1/generate-html/' );
 	$social_image_html_url = add_query_arg(
 		array(
-			'post_id'   => absint( $request['post_id'] ),
+			'post_id'   => absint( $post_id ),
 			'timestamp' => time(),
 		),
 		$social_image_html_url
@@ -426,7 +426,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 	require_once( ABSPATH . 'wp-admin/includes/image.php' );
 
 	// grab the image and store in the media library.
-	$image_id = media_sideload_image( $response['url'], absint( $request['post_id'] ), '', 'id' );
+	$image_id = media_sideload_image( $response['url'], absint( $post_id ), '', 'id' );
 
 	// if we have an image set.
 	if ( ! is_wp_error( $image_id ) ) {
@@ -435,7 +435,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 		update_post_meta( $image_id, 'ssi_wpjm_image', true );
 
 		// get the current image id for the og:image.
-		$current_image_id = get_post_meta( absint( $request['post_id'] ), 'ssi_wpjm_image_id', true );
+		$current_image_id = get_post_meta( absint( $post_id ), 'ssi_wpjm_image_id', true );
 
 		// if we have a current image.
 		if ( ! empty( $current_image_id ) ) {
@@ -446,7 +446,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 		}
 
 		// store the image ID as meta against the job.
-		update_post_meta( absint( $request['post_id'] ), 'ssi_wpjm_image_id', $image_id );
+		$result = update_post_meta( absint( $post_id ), 'ssi_wpjm_image_id', $image_id );
 
 	}
 
@@ -457,7 +457,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 			'id'      => $image_id,
 			'url'     => wp_get_attachment_image_url( $image_id, 'ssi_image' ),
 		),
-		$request
+		$post_id
 	);
 
 }
