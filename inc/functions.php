@@ -17,7 +17,7 @@ function ssi_wpjm_has_image( $post_id = 0 ) {
 	}
 
 	// get the image id stored as meta.
-	$image_id = get_post_meta( $post_id, '', true );
+	$image_id = get_post_meta( $post_id, 'ssi_wpjm_image_id', true );
 
 	// if we have no image id.
 	if ( empty( $image_id ) ) {
