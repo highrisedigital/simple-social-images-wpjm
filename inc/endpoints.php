@@ -74,6 +74,9 @@ function ssi_wpjm_load_jobfeed_endpoint_template( $template ) {
 
 add_filter( 'template_include', 'ssi_wpjm_load_jobfeed_endpoint_template' );
 
+/**
+ * Registers a custom rest endpoint which gets the image for a post.
+ */
 function ssi_wpjm_register_rest_endpoint() {
 
 	// register a new rest route or endpoint for getting slot posts.
