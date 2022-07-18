@@ -1,0 +1,276 @@
+/**
+ * CSS rules that apply to all templates.
+ */
+:root {
+	--hdsmi--text--color: white;
+	--hdsmi--text--background-color: rgb(91, 212, 218);
+	--hdsmi--background-color: rgb(23, 139, 145);
+	--hdsmi--font-family: sans-serif;
+	--hdsmi--font-size: 6vw;
+	--hdsmi--title--font-size: 6vw;
+	--hdsmi--title--font-weight: inherit;
+	--hdsmi--title--text-transform: inherit;
+	--hdsmi--location--font-size: 4vw;
+	--hdsmi--location--font-weight: inherit;
+	--hdsmi--location--text-transform: inherit;
+	--hdsmi--salary--font-size: 3vw;
+	--hdsmi--salary--font-weight: inherit;
+	--hdsmi--salary--text-transform: inherit;
+	--hdsmi--image--background-blend-mode: none;
+	--hdsmi--logo--height: 4vw;
+	--hdsmi--logo--width: auto
+}
+body {
+	margin: 0;
+	padding: 0
+}
+.hdsmi-template {
+	width: 100vw;
+	aspect-ratio: 120/63;
+	display: grid;
+	place-items: center;
+	background-color: var(--hdsmi--background-color)
+}
+.hdsmi-template__inner {
+	position: relative;
+	aspect-ratio: 120/63;
+	width: 100%
+}
+.hdsmi-template__text {
+	font-size: var(--hdsmi--font-size);
+	font-family: var(--hdsmi--font-family);
+	color: var(--hdsmi--text--color)
+}
+.hdsmi-template__title {
+	color: var(--hdsmi--title--color,var(--hdsmi--text--color));
+	font-size: var(--hdsmi--title--font-size, var(--hdsmi--font-size));
+	font-weight: var(--hdsmi--title--font-weight);
+	text-transform: var(--hdsmi--title--text-transform)
+}
+.hdsmi-template__location {
+	color: var(--hdsmi--location--color,var(--hdsmi--text--color));
+	font-size: var(--hdsmi--location--font-size, var(--hdsmi--font-size));
+	font-weight: var(--hdsmi--location--font-weight);
+	text-transform: var(--hdsmi--location--text-transform)
+}
+.hdsmi-template__salary {
+	color: var(--hdsmi--salary--color,var(--hdsmi--text--color));
+	font-size: var(--hdsmi--salary--font-size, var(--hdsmi--font-size));
+	font-weight: var(--hdsmi--salary--font-weight);
+	text-transform: var(--hdsmi--salary--text-transform)
+}
+.hdsmi-template__logo {
+	height: var(--hdsmi--logo--height);
+	width: var(--hdsmi--logo--width)
+}
+
+/* Template 1 */
+
+.hdsmi-template--1 {
+	--hdsmi--title--font-weight: bold
+}
+.hdsmi-template--1 .hdsmi-template__inner {
+	display: flex;
+	align-items: center;
+	width: 100%
+}
+.hdsmi-template--1 .hdsmi-template__text {
+	display: flex;
+	flex-direction: column;
+	gap: 3vw;
+	padding: 3vw
+}
+.hdsmi-template--1 .hdsmi-template__image {
+	align-self: stretch;
+	width: 33%;
+	height: auto;
+	object-fit: cover
+}
+.hdsmi-template--1 .hdsmi-template__logo {
+	position: absolute;
+	top: 3vw;
+	right: 3vw
+}
+
+/* Template 2 */
+
+.hdsmi-template--2 {
+	--hdsmi--location--font-size: 2.5vw
+}
+.hdsmi-template--2 {
+	--hdsmi--location--font-size: 2.5vw
+}
+.hdsmi-template--2 .hdsmi-template__inner {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end
+}
+.hdsmi-template--2 .hdsmi-template__image {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover
+}
+.hdsmi-template--2 .hdsmi-template__text {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	gap: 2vw;
+	padding: 0 6vw 4vw
+}
+.hdsmi-template--2 .hdsmi-template__text:after {
+	content: '';
+	position: absolute;
+	z-index: -1;
+	top: -10vw;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: linear-gradient(#00000000,var(--hdsmi--text--background-color) 70%,var(--hdsmi--text--background-color))
+}
+.hdsmi-template--2 .hdsmi-template__title {
+	order: 2
+}
+.hdsmi-template--2 .hdsmi-template__location {
+	text-transform: uppercase;
+	order: 1;
+	margin-top: auto
+}
+.hdsmi-template--2 .hdsmi-template__salary {
+	order: 3;
+	font-weight: 700
+}
+.hdsmi-template--2 .hdsmi-template__logo {
+	position: absolute;
+	top: 3vw;
+	left: 6vw
+}
+
+/* Template 3 */
+
+.hdsmi-template--3 {
+	--hdsmi--title--font-weight: bold
+}
+.hdsmi-template--3 {
+	--hdsmi--title--font-size: 4vw;
+	--hdsmi--location--font-size: 3vw;
+	--hdsmi--logo--height: 6vw
+}
+.hdsmi-template--3 .hdsmi-template__text {
+	width: 66.66vw;
+	z-index: 2;
+	position: absolute;
+	bottom: 4vw;
+	left: 4vw;
+	background-color: var(--hdsmi--text--background-color);
+	padding: 2vw;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 2vw
+}
+.hdsmi-template--3 .hdsmi-template__salary {
+	margin-left: auto
+}
+.hdsmi-template--3 .hdsmi-template__image {
+	width: 66.66vw;
+	height: 40vw;
+	position: absolute;
+	z-index: 1;
+	top: 5vw;
+	right: 0;
+	bottom: 5vw;
+	object-fit: cover
+}
+.hdsmi-template--3 .hdsmi-template__logo {
+	position: absolute;
+	top: 3vw;
+	left: 3vw
+}
+
+/* Template 4 */
+
+.hdsmi-template--4 {
+	--hdsmi--title--font-size: 4vw;
+	--hdsmi--location--font-size: 2.5vw;
+	--hdsmi--salary--font-size: 2.5vw;
+	--hdsmi--logo--height: 5vw
+}
+.hdsmi-template--4 .hdsmi-template__inner {
+	display: grid;
+	align-items: end;
+	justify-items: center
+}
+.hdsmi-template--4 .hdsmi-template__image {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	object-fit: cover;
+	mix-blend-mode: screen
+}
+.hdsmi-template--4 .hdsmi-template__text {
+	position: relative;
+	z-index: 1;
+	background-color: var(--hdsmi--text--background-color);
+	padding: 2vw;
+	margin: 4vw 15vw;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 2vw
+}
+.hdsmi-template--4 .hdsmi-template__logo {
+	position: absolute;
+	top: 3vw;
+	z-index: 0
+}
+
+/* Template 5 */
+
+.hdsmi-template--5 {
+	--hdsmi--title--font-size: 5vw;
+	--hdsmi--location--font-size: 3vw;
+	--hdsmi--logo--height: 3vw
+}
+.hdsmi-template--5 .hdsmi-template__text {
+	width: 50vw;
+	position: absolute;
+	top: 50%;
+	left: calc(50% - 4vw);
+	transform: translateY(-50%)
+}
+.hdsmi-template--5 .hdsmi-template__text > * {
+	display: inline;
+	padding: 1vw 2vw;
+	background-color: var(--hdsmi--text--background-color);
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone
+}
+.hdsmi-template--5 .hdsmi-template__text > :after {
+	content: "\A";
+	white-space: pre-line
+}
+.hdsmi-template--5 .hdsmi-template__title {
+	line-height: 1
+}
+.hdsmi-template--5 .hdsmi-template__image {
+	width: 50vw;
+	height: 100%;
+	object-fit: cover
+}
+.hdsmi-template--5 .hdsmi-template__logo {
+	position: absolute;
+	top: 3vw;
+	right: 3vw
+}
