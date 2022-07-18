@@ -24,6 +24,13 @@ function ssi_wpjm_settings_page_output() {
 
 		<h1><?php echo esc_html_e( 'Simple Social Images Settings', 'simple-social-images-wpjm' ); ?></h1>
 
+		<?php
+
+		// before the settings form output.
+		do_action( 'ssi_wpjm_before_settings_form_output' );
+
+		?>
+
 		<form method="post" action="options.php" class="ssi-wpjm-settings-form">
 
 			<?php
@@ -37,7 +44,7 @@ function ssi_wpjm_settings_page_output() {
 			// check we have registered settings.
 			if ( ! empty( $settings ) ) {
 
-				// fores before the settings table output.
+				// before the settings table output.
 				do_action( 'ssi_wpjm_before_settings_output' );
 
 				?>
@@ -139,6 +146,13 @@ function ssi_wpjm_settings_page_output() {
 			?>
 
 		</form>
+
+		<?php
+
+		// after the settings form output.
+		do_action( 'ssi_wpjm_after_settings_form_output' );
+
+		?>
 
 	</div>
 

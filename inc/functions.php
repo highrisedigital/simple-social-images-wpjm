@@ -279,3 +279,16 @@ function ssi_wpjm_add_image_size() {
 }
 
 add_action( 'after_setup_theme', 'ssi_wpjm_add_image_size' );
+
+/**
+ * Adds markup to the end of the settings page for the template preview.
+ */
+function ssi_wpjm_add_preview_markup_to_settings_page() {
+
+	?>
+	<div class="ssi-wpjm-template-preview"></div>
+	<?php
+
+}
+
+add_action( 'ssi_wpjm_after_settings_form_output', 'ssi_wpjm_add_preview_markup_to_settings_page' );
