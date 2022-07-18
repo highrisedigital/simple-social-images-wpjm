@@ -60,14 +60,14 @@ ob_start();
 				--hdsmi--location--font-size: <?php echo esc_attr( $args['location_size'] ); ?>vw;
 				--hdsmi--salary--font-size: <?php echo esc_attr( $args['salary_size'] ); ?>vw;
 				--hdsmi--logo--height: <?php echo esc_attr( $args['logo_size'] ); ?>vw;
-				<?php if ( ! empty( $args['google_font_family'] ) ) { ?>--hdsmi--font-family: <?php echo $args['google_font_family']; ?>;<?php } ?>
+				--hdsmi--font-family: <?php echo $args['google_font_family']; ?>;
 			}
 		</style>
 		
 		<?php
 
 		// if we have a google font url.
-		if ( ! empty( $args['google_font_family'] ) ) {
+		if ( ! empty( $args['google_font_family'] ) && ! empty( $args['google_font_url'] ) ) {
 
 			// output the link elements to load the font.
 			?>

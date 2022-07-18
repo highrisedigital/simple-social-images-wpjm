@@ -233,9 +233,20 @@ function ssi_wpjm_get_google_font_url() {
  */
 function ssi_wpjm_get_google_font_family() {
 
+	// get the font family from settings.
+	$font_family = get_option( 'ssi_wpjm_google_font_family' );
+
+	// if the font family is empty.
+	if ( empty( $font_family ) ) {
+
+		// set to default system family for sans serif.
+		$font_family = 'sans-serif;';
+
+	}
+
 	return apply_filters(
 		'ssi_wpjm_google_font_family',
-		get_option( 'ssi_wpjm_google_font_family' )
+		$font_family
 	);
 
 }
@@ -279,6 +290,32 @@ function ssi_wpjm_add_image_size() {
 }
 
 add_action( 'after_setup_theme', 'ssi_wpjm_add_image_size' );
+
+/**
+ * Outputs the custom variables on the settings page for the template preview.
+ */
+function ssi_wpjm_add_template_custom_properties() {
+
+	?>
+
+	<style>
+		.hdsmi-template{
+			--hdsmi--text--color: <?php echo esc_attr( ssi_wpjm_get_text_color() ); ?>;
+			--hdsmi--text--background-color: <?php echo esc_attr( ssi_wpjm_get_text_bg_color() ); ?>;
+			--hdsmi--background-color: <?php echo esc_attr( ssi_wpjm_get_bg_color() ); ?>;
+			--hdsmi--title--font-size: <?php echo esc_attr( ssi_wpjm_get_title_font_size() ); ?>vw;
+			--hdsmi--location--font-size: <?php echo esc_attr( ssi_wpjm_get_location_font_size() ); ?>vw;
+			--hdsmi--salary--font-size: <?php echo esc_attr( ssi_wpjm_get_salary_font_size() ); ?>vw;
+			--hdsmi--logo--height: <?php echo esc_attr( ssi_wpjm_get_logo_size() ); ?>vw;
+			--hdsmi--font-family: <?php echo ssi_wpjm_get_google_font_family(); ?>;
+		}
+	</style>
+
+	<?php
+
+}
+
+add_action( 'ssi_wpjm_before_settings_form_output', 'ssi_wpjm_add_template_custom_properties' );
 
 /**
  * Adds markup to the end of the settings page for the template preview.

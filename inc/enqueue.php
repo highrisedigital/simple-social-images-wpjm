@@ -45,6 +45,12 @@ function ssi_wpjm_enqueue_scripts( $hook ) {
 
 	// if this is the ssi settings page.
 	if ( $hook === 'job_listing_page_ssi-wpjm-settings' ) {
+
+		// enqueue the template css for the preview to work.
+		wp_enqueue_style(
+			'ssi_wpjm_template_css',
+			SSI_WPJM_LOCATION_URL . '/assets/css/ssi-wpjm-generate.css',
+		);
 		
 		// add the color picker css file       
 		wp_enqueue_style( 'wp-color-picker' ); 
