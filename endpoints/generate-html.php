@@ -95,7 +95,7 @@ if ( $matches !== false ) {
 
 			// remove the meta: string
 			$match_key = str_replace( 'meta:', '', $match_value );
-			
+
 			// get the value of this meta.
 			$match_value = get_post_meta( $args['post_id'], $match_key, true );
 
