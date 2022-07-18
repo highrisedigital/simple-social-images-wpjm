@@ -52,7 +52,7 @@ function ssi_wpjm_enqueue_scripts( $hook ) {
 		// include our custom jQuery file with WordPress Color Picker dependency
 		wp_enqueue_script(
 			'ssi_wpjm_admin_js',
-			SSI_WPJM_LOCATION_URL . '/assets/js/ssi-wpjm-admin.js',
+			SSI_WPJM_LOCATION_URL . '/assets/js/ssi-wpjm-settings.js',
 			array( 'wp-color-picker' ),
 			false,
 			true
