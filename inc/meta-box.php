@@ -44,10 +44,38 @@ function ssi_wpjm_jobs_meta_box_output( $post ) {
 
 	}
 
+	// build the rest endpoint url.
+	$endpoint_url = get_rest_url( null, 'ssi-wpjm/v1/getimage' );
+	$endpoint_url = add_query_arg(
+		array(
+			'post_id' => $post->ID,
+			'_wpnonce'   => wp_create_nonce( 'wp_rest' ),
+		),
+		$endpoint_url
+	);
+
 	?>
-	<p><?php _e( 'Use the button below to generate the social sharing image for this job. You can <a target="_blank" href="' . esc_url( home_url( '/ssi-wpjm/v1/generate-html/?post_id=' . $post->ID ) ) . '">preview it</a> first if you like.', 'simpe-social-images-wpjm' ); ?></p>
+	<p><?php _e( 'Use the button below to generate or delete the social sharing image for this job. You can <a target="_blank" href="' . esc_url( home_url( '/ssi-wpjm/v1/generate-html/?post_id=' . $post->ID ) ) . '">preview it</a> first if you like.', 'simpe-social-images-wpjm' ); ?></p>
+
+	<?php
+
+	// set class for the gernate button.
+	$generate_button_class = array(
+		'button-secondary',
+		'generate-ssi-image-button',
+	);
+
+	// if there is a current social image set.
+	if ( $social_image_id !== 0 ) {
+
+		// add the hidden class.
+		$generate_button_class[] = 'ssi-hidden';
+
+	}
+
+	?>
 	
-	<button class="generate-ssi-image-button button-secondary" id="generate-ssi-image" data-endpoint-url="<?php echo esc_url( get_rest_url( null, 'ssi-wpjm/v1/getimage' ) ); ?>/?post_id=<?php echo esc_attr( $post->ID ); ?>">
+	<button class="<?php echo esc_attr( implode( ' ', $generate_button_class ) ); ?>" id="generate-ssi-image" data-endpoint-url="<?php echo esc_url( $endpoint_url ); ?>">
 		<?php esc_html_e( 'Generate Social Sharing Image', 'simple-social-sharing-wpjm' ); ?>
 	</button>
 
@@ -60,11 +88,11 @@ function ssi_wpjm_jobs_meta_box_output( $post ) {
 		'ssi-hidden',
 	);
 
-	// if the is a current social image set.
+	// if there is a current social image set.
 	if ( $social_image_id !== 0 ) {
 
 		// we should be showing the button so remove the hide class.
-		$key = array_search( 'delete-ssi-image-button--hidden', $delete_button_class, true );
+		$key = array_search( 'ssi-hidden', $delete_button_class, true );
 
 		// if we have found the class.
 		if ( $key !== false ) {
