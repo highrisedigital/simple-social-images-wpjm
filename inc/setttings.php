@@ -72,7 +72,7 @@ function ssi_wpjm_register_default_settings( $settings ) {
 	$settings['license_key'] = array(
 		'option_name'    => 'ssi_wpjm_license_key',
 		'label'          => __( 'License Key', 'simple-social-images-wpjm' ),
-		'description'    => __( 'Enter your license key.', 'simple-social-images-wpjm' ),
+		'description'    => sprintf( __( 'Enter your %1$sSimple Social Images%2$s license key.  This is required in order to generate your social sharing images.', 'simple-social-images-wpjm' ), '<a href="https://simplesocialimages.com">', '</a>' ),
 		'input_type'     => 'text',
 		'order'          => 10,
 	);
@@ -88,7 +88,6 @@ function ssi_wpjm_register_default_settings( $settings ) {
 			'3'      => __( 'Template 3', 'simple-social-images-wpjm' ),
 			'4'      => __( 'Template 4', 'simple-social-images-wpjm' ),
 			'5'      => __( 'Template 5', 'simple-social-images-wpjm' ),
-			'custom' => __( 'Custom Template', 'simple-social-images-wpjm' ),
 		),
 		'order'          => 10,
 	);
@@ -160,7 +159,7 @@ function ssi_wpjm_register_default_settings( $settings ) {
 	$settings['background_images'] = array(
 		'option_name' => 'ssi_wpjm_background_images',
 		'label'       => __( 'Add Images', 'simple-social-images-wpjm' ),
-		'description' => __( 'Upload background images to use on your social media images.', 'simple-social-images-wpjm' ),
+		'description' => __( 'Upload background images to use on your template. Each template uses the background image slightly differently. Images are chosen at random from the images uploaded here, assuming your job does not have a featured image.', 'simple-social-images-wpjm' ),
 		'input_type'  => 'gallery',
 		'order'       => 100,
 	);
@@ -209,6 +208,7 @@ function ssi_wpjm_register_default_settings( $settings ) {
 		'option_name'       => 'ssi_wpjm_google_font_url',
 		'label'             => __( 'Google Font URL', 'simple-social-images-wpjm' ),
 		'description'       => __( 'Enter the URL of the Google font you wish to use.', 'simple-social-images-wpjm' ),
+		'description'  => sprintf( __( 'Enter the URL of the Google font. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images-wpjm' ), '<a target="_blank" href="' . esc_url( SSI_WPJM_LOCATION_URL . '/assets/img/google-font-url-example.jpg' ) . '">', '</a>' ),
 		'input_type'        => 'text',
 		'sanitize_callback' => 'sanitize_url',
 		'order'             => 150,
@@ -217,7 +217,7 @@ function ssi_wpjm_register_default_settings( $settings ) {
 	$settings['google_font_family'] = array(
 		'option_name' => 'ssi_wpjm_google_font_family',
 		'label'       => __( 'Google Font Family', 'simple-social-images-wpjm' ),
-		'description' => __( 'Enter the name of the Google font family.', 'simple-social-images-wpjm' ),
+		'description'  => sprintf( __( 'Enter the name of the Google font family. %1$sSee an example of what is required%2$s (the highlighted text).', 'simple-social-images-wpjm' ), '<a target="_blank" href="' . esc_url( SSI_WPJM_LOCATION_URL . '/assets/img/google-font-family-example.jpg' ) . '">', '</a>' ),
 		'input_type'  => 'text',
 		'order'       => 160,
 	);
@@ -546,7 +546,7 @@ function ssi_wpjm_output_setting_descriptions( $setting, $value ) {
 
 	// output the description.
 	?>
-	<p class="ssi-wpjm-input-description"><?php echo esc_html( $setting['description'] ); ?></p>
+	<p class="ssi-wpjm-input-description"><?php echo wp_kses_post( $setting['description'] ); ?></p>
 	<?php
 
 }
