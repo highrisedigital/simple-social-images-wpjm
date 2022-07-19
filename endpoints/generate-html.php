@@ -53,14 +53,40 @@ ob_start();
 		<link rel="stylesheet" href="<?php echo esc_url( SSI_WPJM_LOCATION_URL . '/assets/css/ssi-wpjm-generate.css' ); ?>" />
 		<style>
 			.hdsmi-template{
-				--hdsmi--text--color: <?php echo esc_attr( $args['text_color'] ); ?>;
-				--hdsmi--text--background-color: <?php echo esc_attr( $args['bg_text_color'] ); ?>;
-				--hdsmi--background-color: <?php echo esc_attr( $args['bg_color'] ); ?>;
-				--hdsmi--title--font-size: <?php echo esc_attr( $args['title_size'] ); ?>vw;
-				--hdsmi--location--font-size: <?php echo esc_attr( $args['location_size'] ); ?>vw;
-				--hdsmi--salary--font-size: <?php echo esc_attr( $args['salary_size'] ); ?>vw;
-				--hdsmi--logo--height: <?php echo esc_attr( $args['logo_size'] ); ?>vw;
-				--hdsmi--font-family: <?php echo $args['google_font_family']; ?>;
+				<?php
+				if ( ! empty( $args['text_color'] ) ) { 
+					echo "--hdsmi--text--color:" . esc_attr( $args['text_color'] ) . ";"
+				}
+
+				if ( ! empty( $args['bg_text_color'] ) ) { 
+					echo "--hdsmi--text--background-color:" . esc_attr( $args['bg_text_color'] ) . ";"
+				}
+
+				if ( ! empty( $args['bg_color'] ) ) { 
+					echo "--hdsmi--background-color:" . esc_attr( $args['bg_color'] ) . ";"
+				}
+
+				if ( ! empty( $args['title_size'] ) ) { 
+					echo "--hdsmi--title--font-size:" . esc_attr( $args['title_size'] ) . ";"
+				}
+
+				if ( ! empty( $args['location_size'] ) ) { 
+					echo "--hdsmi--location--font-size:" . esc_attr( $args['location_size'] ) . ";"
+				}
+
+				if ( ! empty( $args['salary_size'] ) ) { 
+					echo "--hdsmi--salary--font-size:" . esc_attr( $args['salary_size'] ) . ";"
+				}
+
+				if ( ! empty( $args['logo_size'] ) ) { 
+					echo "--hdsmi--logo--height:" . esc_attr( $args['logo_size'] ) . ";"
+				}
+
+				if ( ! empty( $args['google_font_family'] ) ) { 
+					echo "--hdsmi--font-family:" . esc_attr( $args['google_font_family'] ) . ";"
+				}
+
+				?>
 			}
 		</style>
 		

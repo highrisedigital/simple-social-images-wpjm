@@ -369,7 +369,7 @@ function ssi_wpjm_setting_input_type_image( $setting, $value ) {
 			// get the url of the image.
 			echo wp_get_attachment_image(
 				absint( $value ),
-				'thumbnail',
+				'full',
 				false,
 				array(
 					'class' => 'ssi-wpjm-image',

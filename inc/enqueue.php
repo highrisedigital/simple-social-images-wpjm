@@ -46,6 +46,15 @@ function ssi_wpjm_enqueue_scripts( $hook ) {
 	// if this is the ssi settings page.
 	if ( $hook === 'job_listing_page_ssi-wpjm-settings' ) {
 
+		if ( ! empty ( ssi_wpjm_get_google_font_url() ) ) {
+
+			wp_enqueue_style(
+				'ssi_wpjm_google_font_url',
+				ssi_wpjm_get_google_font_url(),
+			);
+
+		}
+
 		// enqueue the template css for the preview to work.
 		wp_enqueue_style(
 			'ssi_wpjm_template_css',

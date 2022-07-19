@@ -21,9 +21,8 @@
         }).on('select', function() {
 
 			var attachment = ssi_wpjm_image_uploader.state().get('selection').first().toJSON();
-			console.log( attachment );
             $( inputID ).val(attachment.id);
-			$( imgID ).attr( 'src', attachment.sizes.thumbnail.url );
+			$( imgID ).attr( 'src', attachment.sizes.full.url );
         })
         .open();
     });
@@ -139,6 +138,106 @@
 		// NEED TO FIND THIS DYNAMICALLY BASED ON WHERE WE ARE ON CLICK!
 		$( '.ssi-wpjm-input--gallery' ).val( currentImagesArray );		
 
+	});
+
+
+
+
+
+
+	/* Live preview settings */
+
+	/* Logo size */
+	var logoSize = document.querySelector("#ssi_wpjm_logo_size");
+
+	logoSize.addEventListener("change", function() {
+		document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--logo--height", this.value);
+	});
+
+	/* Text color */
+	$('#ssi_wpjm_text_color').iris({
+		//hide: false,
+		change: function(event, ui) {
+			// event = standard jQuery event, produced by whichever control was changed.
+			// ui = standard jQuery UI object, with a color member containing a Color.js object
+	
+			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--color", ui.color.toString());
+
+		}
+	});
+
+	/* Text background color */
+	$('#ssi_wpjm_text_bg_color').iris({
+		//hide: false,
+		change: function(event, ui) {
+			// event = standard jQuery event, produced by whichever control was changed.
+			// ui = standard jQuery UI object, with a color member containing a Color.js object
+	
+			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", ui.color.toString());
+
+		}
+	});
+
+
+	/* Background color */
+	$('#ssi_wpjm_bg_color').iris({
+		//hide: false,
+		change: function(event, ui) {
+			// event = standard jQuery event, produced by whichever control was changed.
+			// ui = standard jQuery UI object, with a color member containing a Color.js object
+	
+			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--background-color", ui.color.toString());
+
+		}
+	});
+
+	/* Title font size */
+	var titleFontSize = document.querySelector("#ssi_wpjm_title_size");
+
+	titleFontSize.addEventListener("change", function() {
+		document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--title--font-size", this.value);
+	});
+
+	/* Location font size */
+	var locationFontSize = document.querySelector("#ssi_wpjm_location_size");
+
+	locationFontSize.addEventListener("change", function() {
+		document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--location--font-size", this.value);
+	});
+
+	/* Salary font size */
+	var salaryFontSize = document.querySelector("#ssi_wpjm_salary_size");
+
+	salaryFontSize.addEventListener("change", function() {
+	var newFontSize = this.value;
+		document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--salary--font-size", newFontSize);
+	});
+
+	/* Template choice */
+	var templateChoice = document.querySelector("#ssi_wpjm_template");
+
+	templateChoice.addEventListener("change", function() {
+	
+		var template = document.querySelector(".hdsmi-template");
+	
+		template.classList.remove('hdsmi-template--1', 'hdsmi-template--2', 'hdsmi-template--3', 'hdsmi-template--4', 'hdsmi-template--5');
+	
+		template.classList.add("hdsmi-template--" + this.value);
+	
+	});
+
+	/* Logo file */
+	$('img.ssi-wpjm-image').on('load', function () {
+		$('.hdsmi-template__logo').attr('src', $('img.ssi-wpjm-image').attr('src'));
+	});
+
+	/* Background images */
+	$('img.ssi-wpjm-gallery-image').on('load', function () {
+
+		imgSrc = $('img.ssi-wpjm-gallery-image').attr('src');
+		fullImgSrc = imgSrc.replace("-150x150", "");
+		$('.hdsmi-template__image').attr('src', fullImgSrc);
+		
 	});
 
 })( jQuery );

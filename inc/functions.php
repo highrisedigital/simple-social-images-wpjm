@@ -300,14 +300,39 @@ function ssi_wpjm_add_template_custom_properties() {
 
 	<style>
 		.hdsmi-template{
-			--hdsmi--text--color: <?php echo esc_attr( ssi_wpjm_get_text_color() ); ?>;
-			--hdsmi--text--background-color: <?php echo esc_attr( ssi_wpjm_get_text_bg_color() ); ?>;
-			--hdsmi--background-color: <?php echo esc_attr( ssi_wpjm_get_bg_color() ); ?>;
-			--hdsmi--title--font-size: <?php echo esc_attr( ssi_wpjm_get_title_font_size() ); ?>vw;
-			--hdsmi--location--font-size: <?php echo esc_attr( ssi_wpjm_get_location_font_size() ); ?>vw;
-			--hdsmi--salary--font-size: <?php echo esc_attr( ssi_wpjm_get_salary_font_size() ); ?>vw;
-			--hdsmi--logo--height: <?php echo esc_attr( ssi_wpjm_get_logo_size() ); ?>vw;
-			--hdsmi--font-family: <?php echo ssi_wpjm_get_google_font_family(); ?>;
+			<?php
+				if ( ! empty( ssi_wpjm_get_text_color() ) ) { 
+					echo "--hdsmi--text--color:" . esc_attr( ssi_wpjm_get_text_color() ) . ";";
+				}
+
+				if ( ! empty(  ssi_wpjm_get_text_bg_color() ) ) { 
+					echo "--hdsmi--text--background-color:" . esc_attr(  ssi_wpjm_get_text_bg_color() ) . ";";
+				}
+
+				if ( ! empty( ssi_wpjm_get_bg_color() ) ) { 
+					echo "--hdsmi--background-color:" . esc_attr( ssi_wpjm_get_bg_color() ) . ";";
+				}
+
+				if ( ! empty( ssi_wpjm_get_title_font_size() ) ) { 
+					echo "--hdsmi--title--font-size:" . esc_attr( ssi_wpjm_get_title_font_size() ) . ";";
+				}
+
+				if ( ! empty( ssi_wpjm_get_location_font_size() ) ) { 
+					echo "--hdsmi--location--font-size:" . esc_attr( ssi_wpjm_get_location_font_size() ) . ";";
+				}
+
+				if ( ! empty( ssi_wpjm_get_salary_font_size() ) ) { 
+					echo "--hdsmi--salary--font-size:" . esc_attr( ssi_wpjm_get_salary_font_size() ) . ";";
+				}
+
+				if ( ! empty( ssi_wpjm_get_logo_size() ) ) { 
+					echo "--hdsmi--logo--height:" . esc_attr( ssi_wpjm_get_logo_size() ) . ";";
+				}
+
+				if ( ! empty( ssi_wpjm_get_google_font_family() ) ) { 
+					echo "--hdsmi--font-family:" . wp_kses_post( ssi_wpjm_get_google_font_family() ) . ";";
+				}
+			?>
 		}
 	</style>
 
@@ -323,7 +348,23 @@ add_action( 'ssi_wpjm_before_settings_form_output', 'ssi_wpjm_add_template_custo
 function ssi_wpjm_add_preview_markup_to_settings_page() {
 
 	?>
-	<div class="ssi-wpjm-template-preview"></div>
+	<div class="ssi-wpjm-template-preview">
+
+		<button class="ssi-wpjm-template-preview__toggle">Hide preview</button>
+
+		<div class="hdsmi-template hdsmi-template--<?php echo esc_attr( ssi_wpjm_get_template() ); ?>">
+			<div class="hdsmi-template__inner">
+				<div class="hdsmi-template__text">
+					<span class="hdsmi-template__title" contenteditable="true">Test job title</span>
+					<span class="hdsmi-template__location" contenteditable="true">London, UK</span>
+					<span class="hdsmi-template__salary" contenteditable="true">£30,000 per annum</span>
+				</div>
+				<img class="hdsmi-template__image" src="https://source.unsplash.com/random/?corporate" />
+				<img class="hdsmi-template__logo" src="https://ecf5j3nfg2f.exactdn.com/wp-content/uploads/2020/10/searchlight-logo.png?strip=all&lossy=1&ssl=1" />
+			</div>
+		</div>
+
+	</div>
 	<?php
 
 }
