@@ -161,7 +161,11 @@
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
 	
+			// update the custom property.
 			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--color", ui.color.toString());
+			
+			// update the color preview background color.
+			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
 
 		}
 	});
@@ -173,7 +177,11 @@
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
 	
+			// update the custom property.
 			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", ui.color.toString());
+			
+			// update the color preview background color.
+			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
 
 		}
 	});
@@ -186,7 +194,11 @@
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
 	
+			// update the custom property.
 			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--background-color", ui.color.toString());
+
+			// update the color preview background color.
+			$(this).parents('.wp-picker-container').find('.button.wp-color-result').css('background-color', ui.color.toString());
 
 		}
 	});
@@ -237,7 +249,7 @@
 		imgSrc = $('img.ssi-wpjm-gallery-image').attr('src');
 		fullImgSrc = imgSrc.replace("-150x150", "");
 		$('.hdsmi-template__image').attr('src', fullImgSrc);
-		
+
 	});
 
 })( jQuery );
