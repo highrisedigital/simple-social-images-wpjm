@@ -431,6 +431,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 		$api_url,
 		array(
 			'sslverify' => false,
+			'timeout'   => 30,
 		)
 	);
 
