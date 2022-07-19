@@ -61,7 +61,7 @@ img.ssi-image {
 .ssi-wpjm-settings-form tr {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 2em;
+	column-gap: 2em;
 }
 .ssi-wpjm-settings-form th {
 	padding: 20px 0;
