@@ -350,8 +350,6 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 	?>
 	<div class="ssi-wpjm-template-preview">
 
-		<button class="ssi-wpjm-template-preview__toggle">Hide preview</button>
-
 		<div class="hdsmi-template hdsmi-template--<?php echo esc_attr( ssi_wpjm_get_template() ); ?>">
 			<div class="hdsmi-template__inner">
 				<div class="hdsmi-template__text">

@@ -177,8 +177,8 @@ function ssi_wpjm_register_default_settings( $settings ) {
 		'description' => __( 'Select a size for the title.', 'simple-social-images-wpjm' ),
 		'input_type'  => 'range',
 		'min'         => '2',
-		'max'         => '12',
-		'step'        => '0.1',
+		'max'         => '10',
+		'step'        => '0.5',
 		'order'       => 120,
 	);
 
@@ -188,8 +188,8 @@ function ssi_wpjm_register_default_settings( $settings ) {
 		'description' => __( 'Select a size for the location.', 'simple-social-images-wpjm' ),
 		'input_type'  => 'range',
 		'min'         => '2',
-		'max'         => '6',
-		'step'        => '0.1',
+		'max'         => '10',
+		'step'        => '0.5',
 		'order'       => 130,
 	);
 
@@ -199,8 +199,8 @@ function ssi_wpjm_register_default_settings( $settings ) {
 		'description' => __( 'Select a size for the salary.', 'simple-social-images-wpjm' ),
 		'input_type'  => 'range',
 		'min'         => '2',
-		'max'         => '6',
-		'step'        => '0.1',
+		'max'         => '10',
+		'step'        => '0.5',
 		'order'       => 140,
 	);
 
