@@ -14,11 +14,20 @@ This plugin automatically generates beautiful and branded images which are displ
 
 Simple Social Images for WP job Manager is a plugin which automates the creation of branded, beautiful social images for your WP Job Manager jobs. Our clients have told us that jobs which are shared on social media and show a branded image, containing the job title, location and salary, have improved engagement.
 
-**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_.
+⚠️**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_.
 
 When you share a job URL from your website on social networks, a preview image can be shown in order to preview the content. If this isn't customised, it can often look unprofessional. Many WP Job Manager users will create their own images, uploading them to WordPress. However, this is time consumuing and prone to errors. This plugin automates the creation of these images and makes sure they are set as the image to use in the social network preview.
 
 The images that are generated can be customised to suit your brand. In fact, you have control over which template you would like to use (currently there is a choice of 5, with more to come soon!), which colours should be used in the template, adding your logo to each image as well as choosing suitable background images. Our simple preview tool allows you to preview what you images will look like in the plugins settings page.
+
+== Installation ==
+
+1. Log into WordPress
+2. Go to Plugins, Add New
+3. Search for Simple Social Images for WP Job Manager
+4. Click Install Now, then Activate
+5. Go to Job Listings, the Simple Social Images
+6. Enter your license key for [Simple Social Images](https://simplesocialimages.com) and complete the settings to setup your images.
 
 == Frequently Asked Questions ==
 
