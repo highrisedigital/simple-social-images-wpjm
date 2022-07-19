@@ -180,6 +180,9 @@ body {
 	align-items: center;
 	gap: calc(2 * var(--hdsmi-template--unit))
 }
+.hdsmi-template--3 .hdsmi-template__title {
+	width: 100%
+}
 .hdsmi-template--3 .hdsmi-template__salary {
 	margin-left: auto
 }
