@@ -283,10 +283,11 @@
 	$(document).on('click', '.ssi-wpjm-gallery-image', function () {
 
 		// get the image source.
-		var imgSrc = $(this).attr('src');
+		imgSrc = $(this).attr('src');
+		fullImgSrc = imgSrc.replace("-150x150", "");
 
 		// set template image source.
-		$('.hdsmi-template__image').attr('src', imgSrc);
+		$('.hdsmi-template__image').attr('src', fullImgSrc);
 
 	});
 
