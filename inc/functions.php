@@ -86,9 +86,41 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 		<div class="hdsmi-template hdsmi-template--<?php echo esc_attr( ssi_wpjm_get_template() ); ?>">
 			<div class="hdsmi-template__inner">
 				<div class="hdsmi-template__text">
-					<span class="hdsmi-template__title" contenteditable="true">Test job title</span>
-					<span class="hdsmi-template__location" contenteditable="true">London, UK</span>
-					<span class="hdsmi-template__salary" contenteditable="true">£30,000 per annum</span>
+
+					<?php 
+
+					// set default title placeholder.
+					$title_placeholder = "Sample job title (click to edit)";
+
+					// if the title placeholder has been set, use that one.
+					if ( ! empty( ssi_wpjm_get_title_placeholder_text() ) ) {
+						$title_placeholder = ssi_wpjm_get_title_placeholder_text();
+					}
+
+					// set default location placeholder.
+					$location_placeholder = "Location (click to edit)";
+
+					// if the location placeholder has been set, use that one.
+					if ( ! empty( ssi_wpjm_get_location_placeholder_text() ) ) {
+						$location_placeholder = ssi_wpjm_get_location_placeholder_text();
+					}
+
+					// set default salary placeholder.
+					$salary_placeholder = "Salary (click to edit)";
+
+					// if the salary placeholder has been set, use that one.
+					if ( ! empty( ssi_wpjm_get_salary_placeholder_text() ) ) {
+						$salary_placeholder = ssi_wpjm_get_salary_placeholder_text();
+					}
+
+					?>
+
+					<span class="hdsmi-template__title"><span contenteditable="true" class="hdsmi-template__title__inner" data-input="ssi_wpjm_title_placeholder_text"><?php echo esc_attr( $title_placeholder ); // TODO: Check esc ?></span></span>
+
+					<span class="hdsmi-template__location"><span contenteditable="true" class="hdsmi-template__editable hdsmi-template__location__inner" data-input="ssi_wpjm_location_placeholder_text"><?php echo esc_attr( $location_placeholder ); // TODO: Check esc ?></span></span>
+
+					<span class="hdsmi-template__salary"><span contenteditable="true" class="hdsmi-template__salary__inner" data-input="ssi_wpjm_salary_placeholder_text"><?php echo esc_attr( $salary_placeholder ); // TODO: Check esc ?></span></span>
+
 				</div>
 
 				<?php

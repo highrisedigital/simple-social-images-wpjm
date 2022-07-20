@@ -251,6 +251,42 @@ function ssi_wpjm_get_salary_font_size() {
 }
 
 /**
+ * Gets the title placeholder text.
+ */
+function ssi_wpjm_get_title_placeholder_text() {
+
+	return apply_filters(
+		'ssi_wpjm_title_placeholder_text',
+		get_option( 'ssi_wpjm_title_placeholder_text' )
+	);
+
+}
+
+/**
+ * Gets the location placeholder text.
+ */
+function ssi_wpjm_get_location_placeholder_text() {
+
+	return apply_filters(
+		'ssi_wpjm_location_placeholder_text',
+		get_option( 'ssi_wpjm_location_placeholder_text' )
+	);
+
+}
+
+/**
+ * Gets the salary placeholder text.
+ */
+function ssi_wpjm_get_salary_placeholder_text() {
+
+	return apply_filters(
+		'ssi_wpjm_salary_placeholder_text',
+		get_option( 'ssi_wpjm_salary_placeholder_text' )
+	);
+
+}
+
+/**
  * Gets the current Google font URL.
  */
 function ssi_wpjm_get_google_font_url() {
