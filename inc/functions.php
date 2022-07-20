@@ -357,8 +357,25 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 					<span class="hdsmi-template__location" contenteditable="true">London, UK</span>
 					<span class="hdsmi-template__salary" contenteditable="true">£30,000 per annum</span>
 				</div>
-				<img class="hdsmi-template__image" src="https://source.unsplash.com/random/?corporate" />
-				<img class="hdsmi-template__logo" src="https://ecf5j3nfg2f.exactdn.com/wp-content/uploads/2020/10/searchlight-logo.png?strip=all&lossy=1&ssl=1" />
+
+				<?php
+
+				$placeholder_pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+				$logo_src = $placeholder_pixel;
+
+				if ( ! empty( ssi_wpjm_get_logo_id() ) ) {
+					$logo_src = wp_get_attachment_image_url( ssi_wpjm_get_logo_id(), 'full' );
+				} 
+
+				$bg_img_src = $placeholder_pixel;
+
+				if ( ! empty( ssi_wpjm_get_background_images() ) ) {
+					$bg_img_src = wp_get_attachment_image_url( ssi_wpjm_get_random_image_id(), 'full' );
+				} 
+
+				?>
+				<img class="hdsmi-template__image" src="<?php echo esc_url( $bg_img_src ); ?>" />
+				<img class="hdsmi-template__logo" src="<?php echo esc_url( $logo_src ); ?>" />
 			</div>
 		</div>
 
