@@ -83,7 +83,7 @@ ob_start();
 				}
 
 				if ( ! empty( $args['google_font_family'] ) ) { 
-					echo "--hdsmi--font-family:" . esc_attr( $args['google_font_family'] ) . ";";
+					echo "--hdsmi--font-family:" . wp_kses_post( $args['google_font_family'] ) . ";";
 				}
 
 				?>
