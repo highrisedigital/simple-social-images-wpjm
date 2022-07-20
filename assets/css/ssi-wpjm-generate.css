@@ -270,6 +270,7 @@ body {
 .hdsmi-template--5 .hdsmi-template__text > * {
 	display: inline-block;
 	padding: calc(1 * var(--hdsmi-template--unit)) calc(2 * var(--hdsmi-template--unit));
+	margin: calc(.5 * var(--hdsmi-template--unit)) 0;
 	background-color: var(--hdsmi--text--background-color);
 	-webkit-box-decoration-break: clone;
 	box-decoration-break: clone
