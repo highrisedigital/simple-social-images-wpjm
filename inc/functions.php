@@ -360,17 +360,27 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 
 				<?php
 
+				// set a place holder transparent pixel to use as defaults.
 				$placeholder_pixel = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+				
+				// set the logo and background images to default to transparent pixel.
 				$logo_src = $placeholder_pixel;
-
+				$bg_img_src = $placeholder_pixel;
+				
+				// if we have a logo already added.
 				if ( ! empty( ssi_wpjm_get_logo_id() ) ) {
+
+					// set the logo src to the added logo image src.
 					$logo_src = wp_get_attachment_image_url( ssi_wpjm_get_logo_id(), 'full' );
+
 				} 
 
-				$bg_img_src = $placeholder_pixel;
-
+				// if we have background images already added.
 				if ( ! empty( ssi_wpjm_get_background_images() ) ) {
+
+					// set a random background image src to the added background image src.
 					$bg_img_src = wp_get_attachment_image_url( ssi_wpjm_get_random_image_id(), 'full' );
+
 				} 
 
 				?>
