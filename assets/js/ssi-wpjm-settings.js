@@ -272,8 +272,6 @@
 		
 	$('img.ssi-wpjm-gallery-image').on('load', function () {
 
-		console.log('Image loaded');
-
 		imgSrc = $(this).attr('src');
 		fullImgSrc = imgSrc.replace("-150x150", "");
 		$('.hdsmi-template__image').attr('src', fullImgSrc);
