@@ -280,16 +280,10 @@
 
 	});
 
-	$(document).on('click', $('.ssi-wpjm-gallery-image'), function () {
-
-		console.log('clicked');
-
-		console.log( $(this) );
+	$(document).on('click', '.ssi-wpjm-gallery-image', function () {
 
 		// get the image source.
 		var imgSrc = $(this).attr('src');
-
-		console.log('imgSrc = ' + imgSrc);
 
 		// set template image source.
 		$('.hdsmi-template__image').attr('src', imgSrc);
