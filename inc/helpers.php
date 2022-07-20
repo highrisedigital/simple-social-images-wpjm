@@ -42,6 +42,36 @@ function ssi_wpjm_has_image( $post_id = 0 ) {
 }
 
 /**
+ * Returns the image url of a posts social image.
+ *
+ * @param  integer $post_id The ID of the post to return the image of. Defaults to current post.
+ * @return string           The image URL or an empty string if the post does not have an image.
+ */
+function ssi_wpjm_ssi_get_image_url( $post_id = 0 ) {
+
+	// if no post ID is provided.
+	if ( 0 === $post_id ) {
+		$post_id = get_the_ID();
+	}
+
+	// if this post does not have an image.
+	if ( 0 === ssi_wpjm_has_image( $post_id ) ) {
+		return '';
+	}
+
+	// return the image url.
+	return apply_filters(
+		'ssi_wpjm_ssi_image_url',
+		wp_get_attachment_image_url(
+			get_post_meta( $post_id, 'ssi_wpjm_image_id', true ),
+			'ssi_image'
+		),
+		$post_id
+	);
+
+}
+
+/**
  * Sorts an array by the order paramter.
  */
 function ssi_wpjm_array_sort_by_order_key( $a, $b ) {
