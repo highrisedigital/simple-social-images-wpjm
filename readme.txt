@@ -14,7 +14,7 @@ Automatically generate beautiful and branded social sharing images for your WP J
 
 Simple Social Images for WP Job Manager automates the creation of branded, beautiful social images for your WP Job Manager jobs. 
 
-⚠️**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_.
+⚠️**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_. It also requires you to have the [WP Job Manager](https://wordpress.org/plugins/wp-job-manager/) plugin installed and activated.
 
 When you share a job URL from your website on social networks, they will look for an image to display. Sometimes no image can be found. Sometimes the image is generic, irrelevant, unprofessional or just embarrasing!
 
@@ -74,12 +74,13 @@ You can also test how your jobs look on [Facebook](https://developers.facebook.c
 
 == Screenshots ==
 
-1. Template 2 preview
-2. Template 3 preview
-3. Template 4 preview
-4. Template 5 preview
-5. The Simple Social Images for WP Job Manager settings screen
-6. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
+1. Template 1 preview
+2. Template 2 preview
+3. Template 3 preview
+4. Template 4 preview
+5. Template 5 preview
+6. The Simple Social Images for WP Job Manager settings screen
+7. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
 
 == Changelog ==
 

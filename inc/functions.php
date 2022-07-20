@@ -1,308 +1,5 @@
 <?php
 /**
- * Checks whether a post has a current generated ssi image.
- *
- * @param  integer $post_id The post ID to check.
- * @return mixed   Zero if no image is present or the image ID is present.
- */
-function ssi_wpjm_has_image( $post_id = 0 ) {
-
-	// if we have no post id to check.
-	if ( $post_id === 0 ) {
-
-		// use current global post id.
-		global $post;
-		$post_id = $post->ID;
-
-	}
-
-	// get the image id stored as meta.
-	$image_id = get_post_meta( $post_id, 'ssi_wpjm_image_id', true );
-
-	// if we have no image id.
-	if ( empty( $image_id ) ) {
-		return 0;
-	}
-
-	// get the image url for the associated meta.
-	$image_url = wp_get_attachment_image_url( $image_id, 'ssi_image' );
-
-	// if we have no image url.
-	if ( $image_url === false ) {
-		return 0;
-	}
-
-	// go this far, we must have an image.
-	return apply_filters( 'ssi_wpjm_has_image', $image_id, $post_id );
-
-}
-
-/**
- * Sorts an array by the order paramter.
- */
-function ssi_wpjm_array_sort_by_order_key( $a, $b ) {
-	
-	// if no order paramter is provided.
-	if ( ! isset( $a['order'] ) ) {
-
-		// set the order to 10.
-		$a['order'] = 10;
-
-	}
-
-	// if no order paramter is provided.
-	if ( ! isset( $b['order'] ) ) {
-
-		// set the order to 10.
-		$b['order'] = 10;
-
-	}
-
-	// if the first array element is the same as the next.
-	if ( $a['order'] === $b['order'] ) {
-		return 0;
-	}
-
-	// return -1 is the first array element is less than the second, otherwise return 1.
-	return ( $a['order'] < $b['order'] ) ? -1 : 1;
-
-}
-
-/**
- * Returns an array of all the registered settings.
- */
-function ssi_wpjm_get_settings() {
-
-	$settings = apply_filters(
-		'ssi_wpjm_settings',
-		array()
-	);
-
-	// sort the settings based on the order parameter.
-	uasort( $settings, 'ssi_wpjm_array_sort_by_order_key' );
-
-	// return the settings.
-	return $settings;
-
-}
-
-/**
- * Gets the current active template selected.
- *
- * @return string The template name.
- */
-function ssi_wpjm_get_template() {
-
-	return apply_filters(
-		'ssi_wpjm_template',
-		get_option( 'ssi_wpjm_template' )
-	);
-
-}
-
-/**
- * Gets the current active text color.
- */
-function ssi_wpjm_get_text_color() {
-
-	return apply_filters(
-		'ssi_wpjm_text_color',
-		get_option( 'ssi_wpjm_text_color' )
-	);
-
-}
-
-/**
- * Gets the current active text background color.
- */
-function ssi_wpjm_get_text_bg_color() {
-
-	return apply_filters(
-		'ssi_wpjm_text_bg_color',
-		get_option( 'ssi_wpjm_text_bg_color' )
-	);
-
-}
-
-/**
- * Gets the current active background color.
- */
-function ssi_wpjm_get_bg_color() {
-
-	return apply_filters(
-		'ssi_wpjm_bg_color',
-		get_option( 'ssi_wpjm_bg_color' )
-	);
-
-}
-
-/**
- * Gets the currently uploaded logo attachment ID.
- */
-function ssi_wpjm_get_logo_id() {
-
-	return apply_filters(
-		'ssi_wpjm_logo_id',
-		get_option( 'ssi_wpjm_logo' )
-	);
-
-}
-
-/**
- * Gets the currently set logo size.
- */
-function ssi_wpjm_get_logo_size() {
-
-	return apply_filters(
-		'ssi_wpjm_logo_size',
-		get_option( 'ssi_wpjm_logo_size' )
-	);
-
-}
-
-/**
- * Gets the currently uploaded logo attachment ID.
- */
-function ssi_wpjm_get_background_images() {
-
-	// get the background images.
-	$bg_images = get_option( 'ssi_wpjm_background_images' );
-
-	// if we have no bg images.
-	if ( empty( $bg_images ) ) {
-		return array();
-	}
-
-	return apply_filters(
-		'ssi_wpjm_background_images',
-		explode( ',', $bg_images )
-	);
-
-}
-
-/**
- * Gets the current title font size.
- */
-function ssi_wpjm_get_title_font_size() {
-
-	return apply_filters(
-		'ssi_wpjm_title_font_size',
-		get_option( 'ssi_wpjm_title_size' )
-	);
-
-}
-
-/**
- * Gets the current location font size.
- */
-function ssi_wpjm_get_location_font_size() {
-
-	return apply_filters(
-		'ssi_wpjm_location_font_size',
-		get_option( 'ssi_wpjm_location_size' )
-	);
-
-}
-
-/**
- * Gets the current salary font size.
- */
-function ssi_wpjm_get_salary_font_size() {
-
-	return apply_filters(
-		'ssi_wpjm_salary_font_size',
-		get_option( 'ssi_wpjm_salary_size' )
-	);
-
-}
-
-/**
- * Gets the current Google font URL.
- */
-function ssi_wpjm_get_google_font_url() {
-
-	return apply_filters(
-		'ssi_wpjm_google_font_url',
-		get_option( 'ssi_wpjm_google_font_url' )
-	);
-
-}
-
-/**
- * Gets the current Google font family.
- */
-function ssi_wpjm_get_google_font_family() {
-
-	// get the font family from settings.
-	$font_family = get_option( 'ssi_wpjm_google_font_family' );
-
-	// if the font family is empty.
-	if ( empty( $font_family ) ) {
-
-		// set to default system family for sans serif.
-		$font_family = 'sans-serif;';
-
-	}
-
-	return apply_filters(
-		'ssi_wpjm_google_font_family',
-		$font_family
-	);
-
-}
-
-/**
- * Gets the title placeholder text.
- */
-function ssi_wpjm_get_title_placeholder_text() {
-
-	return apply_filters(
-		'ssi_wpjm_title_placeholder_text',
-		get_option( 'ssi_wpjm_title_placeholder_text' )
-	);
-
-}
-
-/**
- * Gets the location placeholder text.
- */
-function ssi_wpjm_get_location_placeholder_text() {
-
-	return apply_filters(
-		'ssi_wpjm_location_placeholder_text',
-		get_option( 'ssi_wpjm_location_placeholder_text' )
-	);
-
-}
-
-/**
- * Gets the salary placeholder text.
- */
-function ssi_wpjm_get_salary_placeholder_text() {
-
-	return apply_filters(
-		'ssi_wpjm_salary_placeholder_text',
-		get_option( 'ssi_wpjm_salary_placeholder_text' )
-	);
-
-}
-
-/**
- * Grabs a random image ID from those added to the settings page.
- */
-function ssi_wpjm_get_random_image_id() {
-
-	// get the image ids from options.
-	$images = ssi_wpjm_get_background_images();
-
-	$image_id_key = array_rand( $images, 1 );
-	$image_id = $images[ $image_id_key ];	
-
-	return absint( $image_id );
-
-}
-
-/**
  * Returns the URL of the SSI API to generate an image.
  */
 function ssi_wpjm_generate_api_url() {
@@ -389,41 +86,9 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 		<div class="hdsmi-template hdsmi-template--<?php echo esc_attr( ssi_wpjm_get_template() ); ?>">
 			<div class="hdsmi-template__inner">
 				<div class="hdsmi-template__text">
-
-					<?php 
-					
-					// set default title placeholder.
-					$title_placeholder = "Sample job title (click to edit)";
-
-					// if the title placeholder has been set, use that one.
-					if ( ! empty( ssi_wpjm_get_title_placeholder_text() ) ) {
-						$title_placeholder = ssi_wpjm_get_title_placeholder_text();
-					}
-
-					// set default location placeholder.
-					$location_placeholder = "Location (click to edit)";
-
-					// if the location placeholder has been set, use that one.
-					if ( ! empty( ssi_wpjm_get_location_placeholder_text() ) ) {
-						$location_placeholder = ssi_wpjm_get_location_placeholder_text();
-					}
-
-					// set default salary placeholder.
-					$salary_placeholder = "Salary (click to edit)";
-
-					// if the salary placeholder has been set, use that one.
-					if ( ! empty( ssi_wpjm_get_salary_placeholder_text() ) ) {
-						$salary_placeholder = ssi_wpjm_get_salary_placeholder_text();
-					}
-
-					?>
-
-					<span class="hdsmi-template__title"><span contenteditable="true" class="hdsmi-template__title__inner" data-input="ssi_wpjm_title_placeholder_text"><?php echo esc_attr( $title_placeholder ); // TODO: Check esc ?></span></span>
-
-					<span class="hdsmi-template__location"><span contenteditable="true" class="hdsmi-template__editable hdsmi-template__location__inner" data-input="ssi_wpjm_location_placeholder_text"><?php echo esc_attr( $location_placeholder ); // TODO: Check esc ?></span></span>
-
-					<span class="hdsmi-template__salary"><span contenteditable="true" class="hdsmi-template__salary__inner" data-input="ssi_wpjm_salary_placeholder_text"><?php echo esc_attr( $salary_placeholder ); // TODO: Check esc ?></span></span>
-
+					<span class="hdsmi-template__title" contenteditable="true">Test job title</span>
+					<span class="hdsmi-template__location" contenteditable="true">London, UK</span>
+					<span class="hdsmi-template__salary" contenteditable="true">£30,000 per annum</span>
 				</div>
 
 				<?php
@@ -596,3 +261,93 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 	);
 
 }
+
+/**
+ * Outputs the meta tags in the head for open graph and twitter images.
+ */
+function ssi_wpjm_render_tags() {
+
+	// if this is not a single job.
+	if ( ! is_singular( 'job_listing' ) ) {
+		return;
+	}
+
+	// get the social sharing image url.
+	$ssi_image_url = ssi_wpjm_ssi_get_image_url();
+
+	// if we have no URL.
+	if ( '' === $ssi_image_url ) {
+		return;
+	}
+
+	// set an array of tags to render.
+	$tags = array();
+
+	// if we are rendering open graph tags.
+	if ( apply_filters( 'ssi_wpjm_render_og_image_tags', true ) === true ) {
+
+		// merge the current tags with our tags array.
+		$tags = array_merge(
+			$tags,
+			array(
+				'og:image'        => $ssi_image_url,
+				'og:image:width'  => 1200,
+				'og:image:height' => 630,
+			)
+		);
+
+	}
+
+	// if we are rendering twitter tags.
+	if ( apply_filters( 'ssi_wpjm_render_twitter_image_tags', true ) === true ) {
+
+		// merge the current tags with our tags array.
+		$tags = array_merge(
+			$tags,
+			array(
+				'twitter:image' => $ssi_image_url,
+				'twitter:card'  => 'summary_large_image',
+			)
+		);
+
+	}
+
+	// if we don't have any tags to output.
+	if ( empty( $tags ) ) {
+		return;
+	}
+
+	echo '<!-- Generated by Simple Social Images for WP Job Manager - https://simplesocialimages.com/wp-job-manager -->' . PHP_EOL;	
+
+	// loop through each tag.
+	foreach ( $tags as $property => $content ) {
+
+		// create a filter name for this tag.
+		$filter  = 'ssi_wpjm_meta_' . str_replace( ':', '_', $property );
+
+		// filter the tag
+		$content = apply_filters( $filter, $content );
+
+		// set the meta tag to name for twitter and property for open graph.
+		$label   = strpos( $property, 'twitter' ) === false ? 'property' : 'name';
+
+		// if we have any content.
+		if ( $content ) {
+
+			// print the tag screen.
+			printf(
+				'<meta %1$s="%2$s" content="%3$s">' . PHP_EOL,
+				esc_attr( $label ),
+				esc_attr( $property ),
+				esc_attr( $content )
+			);
+
+		}
+
+	}
+
+	echo '<!-- // Simple Social Images for WP Job Manager -->' . PHP_EOL;
+
+}
+
+add_action( 'wp_head', 'ssi_wpjm_render_tags' );
