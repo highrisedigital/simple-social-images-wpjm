@@ -69,7 +69,7 @@
 
 			// loop through each of the attachments selected.
 			$.each( attachments , function( index, val ) {
-				console.log( currentValues );
+
 				// if this attachment id is not already in the current values array.
 				if ( currentValues.indexOf( val.id + '' ) !== 0 ) {
 
@@ -161,6 +161,14 @@
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
 	
+			// update customproperty on 'Clear' button press.
+			$('.wp-picker-clear').on('click', function(){
+				
+				// update the custom property.
+				document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", 'transparent');
+
+			});
+
 			// update the custom property.
 			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--color", ui.color.toString());
 			
@@ -171,12 +179,21 @@
 	});
 
 	/* Text background color */
+	//var added_clearer = false;
 	$('#ssi_wpjm_text_bg_color').iris({
 		//hide: false,
 		change: function(event, ui) {
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
 	
+			// update customproperty on 'Clear' button press.
+			$('.wp-picker-clear').on('click', function(){
+				
+				// update the custom property.
+				document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", 'transparent');
+
+			});
+			
 			// update the custom property.
 			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", ui.color.toString());
 			
@@ -194,6 +211,14 @@
 			// event = standard jQuery event, produced by whichever control was changed.
 			// ui = standard jQuery UI object, with a color member containing a Color.js object
 	
+			// update customproperty on 'Clear' button press.
+			$('.wp-picker-clear').on('click', function(){
+				
+				// update the custom property.
+				document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--text--background-color", 'transparent');
+
+			});
+
 			// update the custom property.
 			document.querySelector(".hdsmi-template").style.setProperty("--hdsmi--background-color", ui.color.toString());
 
@@ -244,11 +269,24 @@
 	});
 
 	/* Background images */
+		
 	$('img.ssi-wpjm-gallery-image').on('load', function () {
 
-		imgSrc = $('img.ssi-wpjm-gallery-image').attr('src');
+		console.log('Image loaded');
+
+		imgSrc = $(this).attr('src');
 		fullImgSrc = imgSrc.replace("-150x150", "");
 		$('.hdsmi-template__image').attr('src', fullImgSrc);
+
+	});
+
+	$(document).on('click', '.ssi-wpjm-gallery-image', function () {
+
+		// get the image source.
+		var imgSrc = $(this).attr('src');
+
+		// set template image source.
+		$('.hdsmi-template__image').attr('src', imgSrc);
 
 	});
 

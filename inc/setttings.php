@@ -77,6 +77,13 @@ function ssi_wpjm_register_default_settings( $settings ) {
 		'order'          => 10,
 	);
 
+	$settings['template_section'] = array(
+		'option_name'    => 'ssi_wpjm_template_section',
+		'label'          => __( 'Template Settings', 'simple-social-images-wpjm' ),
+		'input_type'     => 'section',
+		'order'          => 12,
+	);
+
 	$settings['template'] = array(
 		'option_name'    => 'ssi_wpjm_template',
 		'label'          => __( 'Select a Template', 'simple-social-images-wpjm' ),
@@ -89,7 +96,7 @@ function ssi_wpjm_register_default_settings( $settings ) {
 			'4'      => __( 'Template 4', 'simple-social-images-wpjm' ),
 			'5'      => __( 'Template 5', 'simple-social-images-wpjm' ),
 		),
-		'order'          => 10,
+		'order'          => 15,
 	);
 
 	$settings['colors_section'] = array(
