@@ -1,35 +1,24 @@
 === Simple Social Images for WP Job Manager ===
-Contributors: wpmarkuk, keithdevon, highrisedigital
-Tags: social sharing, jobs, open graph
-Requires at least: 6.0
-Tested up to: 6.0
+Contributors: highrisedigital, wpmarkuk, keithdevon
+Tags: social sharing, jobs, open graph, social images, twitter, facebook, linkedin
+Requires at least: 6.0.1
+Tested up to: 6.0.1
 Stable tag: 1.0
-Requires PHP: 7.0
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin when combined with a Simple Social Images license, automatically generates beautiful and branded images which are displayed in social media feeds when a job, written in WP Job Manager is shared on social media platforms.
+This plugin automatically generates beautiful and branded images which are displayed in social media feeds when a job is shared on social media.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Simple Social Images for WP job Manager is a plugin which automates the creation of branded, beautiful social images for your WP Job Manager jobs. Our clients have told us that jobs which are shared on social media and show a branded image, containing the job title, location and salary, have improved engagement.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_.
 
-A few notes about the sections above:
+When you share a job URL from your website on social networks, a preview image can be shown in order to preview the content. If this isn't customised, it can often look unprofessional. Many WP Job Manager users will create their own images, uploading them to WordPress. However, this is time consumuing and prone to errors. This plugin automates the creation of these images and makes sure they are set as the image to use in the social network preview.
 
-* "Contributors" is a comma separated list of wordpress.org usernames
-* "Tags" is a comma separated list of tags that apply to the plugin
-* "Requires at least" is the lowest version that the plugin will work on
-* "Tested up to" is the highest version that you've *successfully used to test the plugin*
-* Stable tag must indicate the Subversion "tag" of the latest stable version
-
-Note that the `readme.txt` value of stable tag is the one that is the defining one for the plugin.  If the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used for displaying information about the plugin.
-
-If you develop in trunk, you can update the trunk `readme.txt` to reflect changes in your in-development version, without having that information incorrectly disclosed about the current stable version that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
-
-If no stable tag is provided, your users may not get the correct version of your code.
+The images that are generated can be customised to suit your brand. In fact, you have control over which template you would like to use (currently there is a choice of 5, with more to come soon!), which colours should be used in the template, adding your logo to each image as well as choosing suitable background images. Our simple preview tool allows you to preview what you images will look like in the plugins settings page.
 
 == Frequently Asked Questions ==
 
@@ -39,18 +28,31 @@ Yes, the plugin requires a paid license for [Simple Social Images](https://simpl
 
 = Will all the generated images not look the same? =
 
-No, you can select which template you want to use, and then each image that is generated can have a random background image (which you can also provide) and will also include the job title, salary and location.
+No, you can select which template you want to use, and then each image that is generated can have a random background image (which you can also provide), or it will use the featured image of the job itself as the background, and will also include the job title, salary and location.
+
+= How do I test which image is used by the social networks? =
+
+For LinkedIn:
+
+1. Open the LinkedIn Post Inspector
+2. Enter the URL of a job from your website
+3. Click ‘Inspect’
+
+You can also test how your jobs look on [Facebook](https://developers.facebook.com/tools/debug/) and [Twitter](https://cards-dev.twitter.com/validator).
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
+1. Template 2 preview
+2. Template 3 preview
+3. Template 4 preview
+4. Template 5 preview
+5. The Simple Social Images for WP Job Manager settings screen
+6. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
 
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
+* Initial plugin launch.
 
 == Upgrade Notice ==
 

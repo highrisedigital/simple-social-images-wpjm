@@ -24,7 +24,7 @@ $args = array(
 	'google_font_family' => ssi_wpjm_get_google_font_family(),
 	'logo_size'          => ssi_wpjm_get_logo_size(),
 	'image'              => wp_get_attachment_image_url( ssi_wpjm_get_random_image_id(), 'full' ),
-	'logo'               => wp_get_attachment_image_url( get_option( 'ssi_wpjm_logo_id' ), 'full' ),
+	'logo'               => wp_get_attachment_image_url( ssi_wpjm_get_logo_id(), 'full' ),
 );
 
 // if the current post has a featured image.
