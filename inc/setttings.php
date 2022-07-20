@@ -229,6 +229,24 @@ function ssi_wpjm_register_default_settings( $settings ) {
 		'order'       => 160,
 	);
 
+	$settings['title_placeholder_text'] = array(
+		'option_name' => 'ssi_wpjm_title_placeholder_text',
+		'input_type'  => 'hidden',
+		'order'       => 170,
+	);
+
+	$settings['salary_placeholder_text'] = array(
+		'option_name' => 'ssi_wpjm_salary_placeholder_text',
+		'input_type'  => 'hidden',
+		'order'       => 170,
+	);
+
+	$settings['location_placeholder_text'] = array(
+		'option_name' => 'ssi_wpjm_location_placeholder_text',
+		'input_type'  => 'hidden',
+		'order'       => 170,
+	);
+
 	// return the registered settings array.
 	return $settings;
 
@@ -273,6 +291,25 @@ function ssi_wpjm_setting_input_type_textarea( $setting, $value ) {
 }
 
 add_action( 'ssi_wpjm_setting_type_textarea', 'ssi_wpjm_setting_input_type_textarea', 10, 2 );
+
+/**
+ * Controls the output of hidden input setting.
+ *
+ * @param  array $setting an array of the current setting.
+ * @param  mixed $value   the current value of this setting saved in the database.
+ */
+function ssi_wpjm_setting_input_type_hidden( $setting, $value ) {
+
+	// handle output for a hidden input.
+	?>
+
+	<input type="hidden" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="hidden ssi-wpjm-input ssi-wpjm-input--hidden" value="<?php echo esc_attr( $value ); ?>" />
+
+	<?php
+
+}
+
+add_action( 'ssi_wpjm_setting_type_hidden', 'ssi_wpjm_setting_input_type_hidden', 10, 2 );
 
 /**
  * Controls the output of select input setting.
@@ -337,7 +374,7 @@ function ssi_wpjm_setting_input_type_checkbox( $setting, $value ) {
 add_action( 'ssi_wpjm_setting_type_checkbox', 'ssi_wpjm_setting_input_type_checkbox', 10, 2 );
 
 /**
- * Controls the output of checkbox input setting.
+ * Controls the output of color picker input setting.
  *
  * @param  array $setting an array of the current setting.
  * @param  mixed $value   the current value of this setting saved in the database.
@@ -356,7 +393,7 @@ function ssi_wpjm_setting_input_type_color_picker( $setting, $value ) {
 add_action( 'ssi_wpjm_setting_type_color_picker', 'ssi_wpjm_setting_input_type_color_picker', 10, 2 );
 
 /**
- * Controls the output of text input setting.
+ * Controls the output of image input setting.
  *
  * @param  array $setting an array of the current setting.
  * @param  mixed $value   the current value of this setting saved in the database.
@@ -409,14 +446,14 @@ function ssi_wpjm_setting_input_type_image( $setting, $value ) {
 add_action( 'ssi_wpjm_setting_type_image', 'ssi_wpjm_setting_input_type_image', 10, 2 );
 
 /**
- * Controls the output of text input setting.
+ * Controls the output of gallery input setting.
  *
  * @param  array $setting an array of the current setting.
  * @param  mixed $value   the current value of this setting saved in the database.
  */
 function ssi_wpjm_setting_input_type_gallery( $setting, $value ) {
 
-	// handle output for a text input.
+	// handle output for a gallery input.
 	?>
 	
 	<div class="ssi-wpjm-gallery-wrapper" data-placeholder="<?php echo esc_url( SSI_WPJM_LOCATION_URL . '/assets/img/no-image.jpg' ); ?>">
@@ -481,7 +518,7 @@ function ssi_wpjm_setting_input_type_gallery( $setting, $value ) {
 add_action( 'ssi_wpjm_setting_type_gallery', 'ssi_wpjm_setting_input_type_gallery', 10, 2 );
 
 /**
- * Controls the output of text input setting.
+ * Controls the output of range input setting.
  *
  * @param  array $setting an array of the current setting.
  * @param  mixed $value   the current value of this setting saved in the database.
@@ -508,7 +545,7 @@ function ssi_wpjm_setting_input_type_range( $setting, $value ) {
 		$step = $setting['step'];
 	}
 
-	// handle output for a text input.
+	// handle output for a range input.
 	?>
 
 	<input type="range" name="<?php echo esc_attr( $setting['option_name'] ); ?>" id="<?php echo esc_attr( $setting['option_name'] ); ?>" class="regular-text ssi-wpjm-input ssi-wpjm-input--range" min="<?php echo esc_attr( $min ); ?>" max="<?php echo esc_attr( $max ); ?>" step="<?php echo esc_attr( $step ); ?>" value="<?php echo esc_attr( $value ); ?>" />
