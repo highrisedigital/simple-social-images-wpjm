@@ -34,35 +34,36 @@ function ssi_wpjm_add_template_custom_properties() {
 	<style>
 		.hdsmi-template{
 			<?php
-				if ( ! empty( ssi_wpjm_get_text_color() ) ) { 
+				if ( ! empty( ssi_wpjm_get_text_color() ) ) {
 					echo "--hdsmi--text--color:" . esc_attr( ssi_wpjm_get_text_color() ) . ";";
 				}
 
-				if ( ! empty(  ssi_wpjm_get_text_bg_color() ) ) { 
+				if ( ! empty(  ssi_wpjm_get_text_bg_color() ) ) {
 					echo "--hdsmi--text--background-color:" . esc_attr(  ssi_wpjm_get_text_bg_color() ) . ";";
 				}
 
-				if ( ! empty( ssi_wpjm_get_bg_color() ) ) { 
+				if ( ! empty( ssi_wpjm_get_bg_color() ) ) {
 					echo "--hdsmi--background-color:" . esc_attr( ssi_wpjm_get_bg_color() ) . ";";
 				}
 
-				if ( ! empty( ssi_wpjm_get_title_font_size() ) ) { 
+				if ( ! empty( ssi_wpjm_get_title_font_size() ) ) {
 					echo "--hdsmi--title--font-size:" . esc_attr( ssi_wpjm_get_title_font_size() ) . ";";
 				}
 
-				if ( ! empty( ssi_wpjm_get_location_font_size() ) ) { 
+				if ( ! empty( ssi_wpjm_get_location_font_size() ) ) {
 					echo "--hdsmi--location--font-size:" . esc_attr( ssi_wpjm_get_location_font_size() ) . ";";
 				}
 
-				if ( ! empty( ssi_wpjm_get_salary_font_size() ) ) { 
+				if ( ! empty( ssi_wpjm_get_salary_font_size() ) ) {
 					echo "--hdsmi--salary--font-size:" . esc_attr( ssi_wpjm_get_salary_font_size() ) . ";";
 				}
 
-				if ( ! empty( ssi_wpjm_get_logo_size() ) ) { 
+				if ( ! empty( ssi_wpjm_get_logo_size() ) ) {
 					echo "--hdsmi--logo--height:" . esc_attr( ssi_wpjm_get_logo_size() ) . ";";
 				}
 
-				if ( ! empty( ssi_wpjm_get_google_font_family() ) ) { 
+				if ( ! empty( ssi_wpjm_get_google_font_family() ) ) {
+					// using wp_kses_post as do not want to escape single quotes in the font family name.
 					echo "--hdsmi--font-family:" . wp_kses_post( ssi_wpjm_get_google_font_family() ) . ";";
 				}
 			?>
@@ -90,7 +91,7 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 					<?php 
 
 					// set default title placeholder.
-					$title_placeholder = "Sample job title (click to edit)";
+					$title_placeholder = __( 'Sample job title (click to edit)', 'simple-social-images-wpjm' );
 
 					// if the title placeholder has been set, use that one.
 					if ( ! empty( ssi_wpjm_get_title_placeholder_text() ) ) {
@@ -98,7 +99,7 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 					}
 
 					// set default location placeholder.
-					$location_placeholder = "Location (click to edit)";
+					$location_placeholder = __( 'Location (click to edit)', 'simple-social-images-wpjm' );
 
 					// if the location placeholder has been set, use that one.
 					if ( ! empty( ssi_wpjm_get_location_placeholder_text() ) ) {
@@ -106,7 +107,7 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 					}
 
 					// set default salary placeholder.
-					$salary_placeholder = "Salary (click to edit)";
+					$salary_placeholder = __( 'Salary (click to edit)', 'simple-social-images-wpjm' );
 
 					// if the salary placeholder has been set, use that one.
 					if ( ! empty( ssi_wpjm_get_salary_placeholder_text() ) ) {
@@ -115,11 +116,11 @@ function ssi_wpjm_add_preview_markup_to_settings_page() {
 
 					?>
 
-					<span class="hdsmi-template__title"><span contenteditable="true" class="hdsmi-template__title__inner" data-input="ssi_wpjm_title_placeholder_text"><?php echo esc_attr( $title_placeholder ); // TODO: Check esc ?></span></span>
+					<span class="hdsmi-template__title"><span contenteditable="true" class="hdsmi-template__title__inner" data-input="ssi_wpjm_title_placeholder_text"><?php echo esc_html( $title_placeholder ); ?></span></span>
 
-					<span class="hdsmi-template__location"><span contenteditable="true" class="hdsmi-template__editable hdsmi-template__location__inner" data-input="ssi_wpjm_location_placeholder_text"><?php echo esc_attr( $location_placeholder ); // TODO: Check esc ?></span></span>
+					<span class="hdsmi-template__location"><span contenteditable="true" class="hdsmi-template__editable hdsmi-template__location__inner" data-input="ssi_wpjm_location_placeholder_text"><?php echo esc_html( $location_placeholder ); ?></span></span>
 
-					<span class="hdsmi-template__salary"><span contenteditable="true" class="hdsmi-template__salary__inner" data-input="ssi_wpjm_salary_placeholder_text"><?php echo esc_attr( $salary_placeholder ); // TODO: Check esc ?></span></span>
+					<span class="hdsmi-template__salary"><span contenteditable="true" class="hdsmi-template__salary__inner" data-input="ssi_wpjm_salary_placeholder_text"><?php echo esc_html( $salary_placeholder ); ?></span></span>
 
 				</div>
 

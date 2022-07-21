@@ -292,18 +292,18 @@
 	/* Placeholder text fields */
 	$('.hdsmi-template__text > * ').on('focusout', function () {
 
-		console.log('Focusout');
+		//console.log('Focusout');
 
 		// find the inner element
 		editableText = $(this).find('[contenteditable="true"]');
 
 		// get the content.
 		thisContent = editableText.text();
-		console.log(thisContent);
+		//console.log(thisContent);
 
 		// get the data-input value.
 		dataInputValue = editableText.data('input');
-		console.log(dataInputValue);
+		//console.log(dataInputValue);
 
 		// set the input value.
 		$('#' + dataInputValue).val(thisContent);

@@ -231,18 +231,21 @@ function ssi_wpjm_register_default_settings( $settings ) {
 
 	$settings['title_placeholder_text'] = array(
 		'option_name' => 'ssi_wpjm_title_placeholder_text',
+		'label'       => __( 'Title Placeholder Text', 'simple-social-images-wpjm' ),
 		'input_type'  => 'hidden',
 		'order'       => 170,
 	);
 
 	$settings['salary_placeholder_text'] = array(
 		'option_name' => 'ssi_wpjm_salary_placeholder_text',
+		'label'       => __( 'Salary Placeholder Text', 'simple-social-images-wpjm' ),
 		'input_type'  => 'hidden',
 		'order'       => 170,
 	);
 
 	$settings['location_placeholder_text'] = array(
 		'option_name' => 'ssi_wpjm_location_placeholder_text',
+		'label'       => __( 'Location Placeholder Text', 'simple-social-images-wpjm' ),
 		'input_type'  => 'hidden',
 		'order'       => 170,
 	);

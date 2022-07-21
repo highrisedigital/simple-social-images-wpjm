@@ -54,35 +54,36 @@ ob_start();
 		<style>
 			.hdsmi-template{
 				<?php
-				if ( ! empty( $args['text_color'] ) ) { 
+				if ( ! empty( $args['text_color'] ) ) {
 					echo "--hdsmi--text--color:" . esc_attr( $args['text_color'] ) . ";";
 				}
 
-				if ( ! empty( $args['bg_text_color'] ) ) { 
+				if ( ! empty( $args['bg_text_color'] ) ) {
 					echo "--hdsmi--text--background-color:" . esc_attr( $args['bg_text_color'] ) . ";";
 				}
 
-				if ( ! empty( $args['bg_color'] ) ) { 
+				if ( ! empty( $args['bg_color'] ) ) {
 					echo "--hdsmi--background-color:" . esc_attr( $args['bg_color'] ) . ";";
 				}
 
-				if ( ! empty( $args['title_size'] ) ) { 
+				if ( ! empty( $args['title_size'] ) ) {
 					echo "--hdsmi--title--font-size:" . esc_attr( $args['title_size'] ) . ";";
 				}
 
-				if ( ! empty( $args['location_size'] ) ) { 
+				if ( ! empty( $args['location_size'] ) ) {
 					echo "--hdsmi--location--font-size:" . esc_attr( $args['location_size'] ) . ";";
 				}
 
-				if ( ! empty( $args['salary_size'] ) ) { 
+				if ( ! empty( $args['salary_size'] ) ) {
 					echo "--hdsmi--salary--font-size:" . esc_attr( $args['salary_size'] ) . ";";
 				}
 
-				if ( ! empty( $args['logo_size'] ) ) { 
+				if ( ! empty( $args['logo_size'] ) ) {
 					echo "--hdsmi--logo--height:" . esc_attr( $args['logo_size'] ) . ";";
 				}
 
-				if ( ! empty( $args['google_font_family'] ) ) { 
+				if ( ! empty( $args['google_font_family'] ) ) {
+					// using wp_kses_post here as we don't want to escape single quotes.
 					echo "--hdsmi--font-family:" . wp_kses_post( $args['google_font_family'] ) . ";";
 				}
 
@@ -123,7 +124,7 @@ if ( file_exists( $template_location . $args['template'] . '.html' ) ) {
 // get the contents of the buffer, the template markup and clean the buffer.
 $text = ob_get_clean();
 
-// find all of the strings that need replacing.
+// find all of the strings that need replacing. These are in square brackets.
 preg_match_all( "/\[[^\]]*\]/", $text, $matches );
 
 // if we have matches.

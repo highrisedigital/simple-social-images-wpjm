@@ -46,8 +46,10 @@ function ssi_wpjm_enqueue_scripts( $hook ) {
 	// if this is the ssi settings page.
 	if ( $hook === 'job_listing_page_ssi-wpjm-settings' ) {
 
+		// if we have a value for a google font url.
 		if ( ! empty ( ssi_wpjm_get_google_font_url() ) ) {
 
+			// enqueue the google font style on the settings page.
 			wp_enqueue_style(
 				'ssi_wpjm_google_font_url',
 				ssi_wpjm_get_google_font_url(),
@@ -73,6 +75,7 @@ function ssi_wpjm_enqueue_scripts( $hook ) {
 			true
 		);
 
+		// if the media js is not already enqueued.
 		if ( ! did_action( 'wp_enqueue_media' ) ) {
 			wp_enqueue_media();
 		}

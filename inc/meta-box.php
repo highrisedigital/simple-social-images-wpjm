@@ -11,7 +11,7 @@ function ssi_wpjm_add_ssi_jobs_meta_box() {
 
 	add_meta_box(
 		'ssi_wpjm',
-		__( 'Simple Social Images', 'simple-social-image-wpjm'),
+		__( 'Simple Social Images', 'simple-social-image-wpjm' ),
 		'ssi_wpjm_jobs_meta_box_output',
 		'job_listing',
 		'normal',

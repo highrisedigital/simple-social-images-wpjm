@@ -195,7 +195,9 @@ function ssi_wpjm_get_logo_size() {
 }
 
 /**
- * Gets the currently uploaded logo attachment ID.
+ * Gets the currently uploaded logo attachment IDs as an array.
+ *
+ * @return array An array of attachment IDs or an empty array if no images added.
  */
 function ssi_wpjm_get_background_images() {
 
