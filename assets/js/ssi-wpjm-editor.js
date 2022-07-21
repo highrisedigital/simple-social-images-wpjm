@@ -24,20 +24,27 @@
 			// what happens on success.
 			success: function( response, status, request ) {
 
-				console.log( 'Success' );
-				console.log( response );
+				// if the response is a success.
+				if ( false !== response.success ) {
 
-				// set the image src to the response.
-				$( '.ssi-image' ).attr( 'src', response.url );
+					// set the image src to the response.
+					$( '.ssi-image' ).attr( 'src', response.url );
 
-				// change the media id in the delete button.
-				$( '.delete-ssi-image-button' ).data( 'media-id', response.id );
+					// change the media id in the delete button.
+					$( '.delete-ssi-image-button' ).data( 'media-id', response.id );
 
-				// remove the hidden class for the delete button.
-				$( '.delete-ssi-image-button' ).removeClass( 'ssi-hidden' );
+					// remove the hidden class for the delete button.
+					$( '.delete-ssi-image-button' ).removeClass( 'ssi-hidden' );
 
-				// add the hidden class for the add button.
-				$( '.generate-ssi-image-button' ).addClass( 'ssi-hidden' );
+					// add the hidden class for the add button.
+					$( '.generate-ssi-image-button' ).addClass( 'ssi-hidden' );
+
+				} else {
+
+					$( '.ssi-wpjm-error' ).remove();
+					$( '.ssi-wpjm-spinner' ).before( '<p class="ssi-wpjm-error">' + response.error + '</p>' );
+
+				}
 
 				// hide the deploy spinner.
 				$( '.ssi-wpjm-spinner' ).hide();
@@ -47,8 +54,8 @@
 			/* what happens on success */
 			error: function( response ) {
 
-				console.log( 'Error' );
-				console.log( response );
+				// hide the deploy spinner.
+				$( '.ssi-wpjm-spinner' ).hide();
 
 			}
 
@@ -86,9 +93,6 @@
 			// what happens on success.
 			success: function( response, status, request ) {
 
-				console.log( 'Success' );
-				console.log( response );
-
 				// set the image src to the response.
 				$( '.ssi-image' ).attr( 'src', placeholderImag );
 
@@ -109,8 +113,8 @@
 			/* what happens on success */
 			error: function( response ) {
 
-				console.log( 'Error' );
-				console.log( response );
+				// hide the deploy spinner.
+				$( '.ssi-wpjm-spinner' ).hide();
 
 			}
 
