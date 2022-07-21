@@ -228,12 +228,12 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 	);
 
 	// if there was an error.
-	if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+	if ( is_wp_error( $response ) ) {
 
 		// output error.
 		return array(
 			'success' => false,
-			'error'   => $response->get_error_message()
+			'error'   => $response->get_error_message(),
 		);
 
 	}
@@ -245,10 +245,7 @@ function ssi_wpjm_generate_social_image( $post_id = 0 ) {
 	if ( empty( $response['url'] ) ) {
 
 		// output error.
-		return array(
-			'success' => false,
-			'error'   => __( 'No image was generated.', 'simple-social-image-wpjm' ),
-		);
+		return $response;
 
 	}
 
