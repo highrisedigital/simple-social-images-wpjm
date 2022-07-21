@@ -337,6 +337,7 @@ function ssi_wpjm_render_tags() {
 			array(
 				'twitter:image' => $ssi_image_url,
 				'twitter:card'  => 'summary_large_image',
+				'twitter:title' => get_the_title(),
 			)
 		);
 
