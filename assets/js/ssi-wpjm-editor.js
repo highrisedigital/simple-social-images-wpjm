@@ -24,17 +24,27 @@
 			// what happens on success.
 			success: function( response, status, request ) {
 
-				// set the image src to the response.
-				$( '.ssi-image' ).attr( 'src', response.url );
+				// if the response is a success.
+				if ( false !== response.success ) {
 
-				// change the media id in the delete button.
-				$( '.delete-ssi-image-button' ).data( 'media-id', response.id );
+					// set the image src to the response.
+					$( '.ssi-image' ).attr( 'src', response.url );
 
-				// remove the hidden class for the delete button.
-				$( '.delete-ssi-image-button' ).removeClass( 'ssi-hidden' );
+					// change the media id in the delete button.
+					$( '.delete-ssi-image-button' ).data( 'media-id', response.id );
 
-				// add the hidden class for the add button.
-				$( '.generate-ssi-image-button' ).addClass( 'ssi-hidden' );
+					// remove the hidden class for the delete button.
+					$( '.delete-ssi-image-button' ).removeClass( 'ssi-hidden' );
+
+					// add the hidden class for the add button.
+					$( '.generate-ssi-image-button' ).addClass( 'ssi-hidden' );
+
+				} else {
+
+					$( '.ssi-wpjm-error' ).remove();
+					$( '.ssi-wpjm-spinner' ).before( '<p class="ssi-wpjm-error">' + response.error + '</p>' );
+
+				}
 
 				// hide the deploy spinner.
 				$( '.ssi-wpjm-spinner' ).hide();
@@ -44,8 +54,8 @@
 			/* what happens on success */
 			error: function( response ) {
 
-				console.log( 'Error' );
-				console.log( response );
+				// hide the deploy spinner.
+				$( '.ssi-wpjm-spinner' ).hide();
 
 			}
 
@@ -103,8 +113,8 @@
 			/* what happens on success */
 			error: function( response ) {
 
-				console.log( 'Error' );
-				console.log( response );
+				// hide the deploy spinner.
+				$( '.ssi-wpjm-spinner' ).hide();
 
 			}
 

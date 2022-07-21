@@ -1,35 +1,56 @@
 === Simple Social Images for WP Job Manager ===
-Contributors: wpmarkuk, keithdevon, highrisedigital
-Tags: social sharing, jobs, open graph
-Requires at least: 6.0
-Tested up to: 6.0
-Stable tag: 1.0
-Requires PHP: 7.0
+Contributors: highrisedigital, wpmarkuk, keithdevon
+Tags: social sharing, jobs, open graph, social images, twitter, facebook, linkedin
+Requires at least: 6.0.1
+Tested up to: 6.0.1
+Stable tag: 0.1
+Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-This plugin when combined with a Simple Social Images license, automatically generates beautiful and branded images which are displayed in social media feeds when a job, written in WP Job Manager is shared on social media platforms.
+Automatically generate beautiful and branded social sharing images for your WP Job Manager jobs.
 
 == Description ==
 
-This is the long description.  No limit, and you can use Markdown (as well as in the following sections).
+Simple Social Images for WP Job Manager automates the creation of branded, beautiful social images for your WP Job Manager jobs. 
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+⚠️**Important** - _for this plugin to work, it requires a paid Simple Social Images license in order to generate the images. [Purchase a license here](https://simplesocialimages.com)_. It also requires you to have the [WP Job Manager](https://wordpress.org/plugins/wp-job-manager/) plugin installed and activated.
 
-A few notes about the sections above:
+When you share a job URL from your website on social networks, they will look for an image to display. Sometimes no image can be found. Sometimes the image is generic, irrelevant, unprofessional or just embarrasing!
 
-* "Contributors" is a comma separated list of wordpress.org usernames
-* "Tags" is a comma separated list of tags that apply to the plugin
-* "Requires at least" is the lowest version that the plugin will work on
-* "Tested up to" is the highest version that you've *successfully used to test the plugin*
-* Stable tag must indicate the Subversion "tag" of the latest stable version
+Custom sharing images **increase engagement** when you, or others, share your jobs online. 
 
-Note that the `readme.txt` value of stable tag is the one that is the defining one for the plugin.  If the `/trunk/readme.txt` file says that the stable tag is `4.3`, then it is `/tags/4.3/readme.txt` that'll be used for displaying information about the plugin.
+To solve this, many WP Job Manager users will create their own images and upload them to WordPress. But this can be very time consuming to produce (e.g. using Canva) and difficult to maintain consistency.
 
-If you develop in trunk, you can update the trunk `readme.txt` to reflect changes in your in-development version, without having that information incorrectly disclosed about the current stable version that lacks those changes -- as long as the trunk's `readme.txt` points to the correct stable tag.
+With Simple Social Images for WP Job Manager you can automate this process, getting the engagement that you want while saving 50+ hours per year.
 
-If no stable tag is provided, your users may not get the correct version of your code.
+How it works:
+
+1. Choose your template and customise it to your brand
+2. Create and publish a job
+3. The plugin will create an image and save it to your WordPress Media Library
+4. The plugin will set the og:image tag to the URL of the custom image
+5. Share your job online and see your custom sharing image
+
+The images that are generated can be customised to suit your brand. You have control over:
+
+* Template choice
+* Fonts
+* Text sizes
+* Colors
+* Company logo and size
+* Background images
+
+Our simple preview tool allows you to preview what you images will look like in the plugins settings page.
+
+== Installation ==
+
+1. Log into WordPress
+2. Go to Plugins, Add New
+3. Search for Simple Social Images for WP Job Manager
+4. Click Install Now, then Activate
+5. Go to Job Listings, the Simple Social Images
+6. Enter your license key for [Simple Social Images](https://simplesocialimages.com) and complete the settings to setup your images.
 
 == Frequently Asked Questions ==
 
@@ -39,18 +60,32 @@ Yes, the plugin requires a paid license for [Simple Social Images](https://simpl
 
 = Will all the generated images not look the same? =
 
-No, you can select which template you want to use, and then each image that is generated can have a random background image (which you can also provide) and will also include the job title, salary and location.
+No, you can select which template you want to use, and then each image that is generated can have a random background image (which you can also provide), or it will use the featured image of the job itself as the background, and will also include the job title, salary and location.
+
+= How do I test which image is used by the social networks? =
+
+For LinkedIn:
+
+1. Open the LinkedIn Post Inspector
+2. Enter the URL of a job from your website
+3. Click ‘Inspect’
+
+You can also test how your jobs look on [Facebook](https://developers.facebook.com/tools/debug/) and [Twitter](https://cards-dev.twitter.com/validator).
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Screenshots are stored in the /assets directory.
-2. This is the second screen shot
+1. Template 1 preview
+2. Template 2 preview
+3. Template 3 preview
+4. Template 4 preview
+5. Template 5 preview
+6. The Simple Social Images for WP Job Manager settings screen
+7. The Simple Social Images for WP Job Manager meta box, used to generate the images for each job
 
 == Changelog ==
 
-= 1.0 =
-* A change since the previous version.
-* Another change.
+= 0.1 =
+* Initial plugin launch.
 
 == Upgrade Notice ==
 

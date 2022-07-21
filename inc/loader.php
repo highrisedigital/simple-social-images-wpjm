@@ -18,3 +18,18 @@ if ( ! empty( $includes_files ) ) {
 
 	}
 }
+
+// load in all the required plugin files.
+$plugins_fies = glob( plugin_dir_path( __FILE__ ) . '/plugins/*.php' );
+
+// if we have any plugin files.
+if ( ! empty( $plugins_fies ) ) {
+
+	// loop through each file.
+	foreach ( $plugins_fies as $plugin_file ) {
+
+		// require this file in the plugin.
+		require_once( $plugin_file );
+
+	}
+}
