@@ -14,7 +14,7 @@
 // define variable for path to this plugin file.
 define( 'SSI_WPJM_LOCATION', dirname( __FILE__ ) );
 define( 'SSI_WPJM_LOCATION_URL', plugins_url( '', __FILE__ ) );
-define( 'SSI_WPJM_VERSION', '0.1' );
+define( 'SSI_WPJM_VERSION', '1.0' );
 
 /**
  * Function to run on plugins load.
