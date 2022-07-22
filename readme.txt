@@ -3,7 +3,7 @@ Contributors: highrisedigital, wpmarkuk, keithdevon
 Tags: social sharing, jobs, open graph, social images, twitter, facebook, linkedin
 Requires at least: 6.0.1
 Tested up to: 6.0.1
-Stable tag: 0.1
+Stable tag: 1.0
 Requires PHP: 7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -86,6 +86,9 @@ You can also test how your jobs look on [Facebook](https://developers.facebook.c
 
 = 0.1 =
 * Initial plugin launch.
+
+= 1.0 =
+* Plugin added to the WP.org repo
 
 == Upgrade Notice ==
 
