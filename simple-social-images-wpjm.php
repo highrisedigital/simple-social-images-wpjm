@@ -3,7 +3,7 @@
  * Plugin Name: Simple Social Images for WP Job Manager
  * Plugin URI: https://simplesocialimages.com/wp-job-manager/
  * Description: Create automated, beautiful and branded images for jobs shared on social media channels. This plugin requires a license for <a href="https://simplesocialimages.com">Simple Social Images</a>.
- * Version: 0.1
+ * Version: 1.0
  * Author: Highrise Digital
  * Author URI: https://highrise.digital/
  * Text Domain: simple-social-images-wpjm
